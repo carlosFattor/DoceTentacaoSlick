@@ -30,4 +30,6 @@ object Category {
 
     def * = (id.?, name, url, desc)<>((Category.apply _).tupled, Category.unapply)
   }
+
+  val table = TableQuery[CategoryTable]
 }

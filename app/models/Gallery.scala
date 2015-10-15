@@ -28,4 +28,6 @@ object Gallery {
 
     def * = (id.?, name, desc, imgSmallURL, imgLargeURL)<>((Gallery.apply _).tupled, Gallery.unapply)
   }
+
+  val table = TableQuery[GalleryTable]
 }
