@@ -5,11 +5,22 @@ package forms
  */
 import play.api.data.Form
 import play.api.data.Forms._
+import play.api.libs.json.{Json, Format}
 
 /**
  * The form which handles the submission of the credentials.
  */
+
+/**
+ * The form data.
+ *
+ * @param email The email of the user.
+ * @param password The password of the user.
+ */
+case class SignInForm( email: String, password: String)
 object SignInForm {
+
+  implicit val SignIn: Format[SignInForm] = Json.format[SignInForm]
 
   /**
    * A play framework form.
@@ -18,15 +29,6 @@ object SignInForm {
     mapping(
       "email" -> email,
       "password" -> nonEmptyText
-    )(Data.apply)(Data.unapply)
+    )(SignInForm.apply)(SignInForm.unapply)
   )
-
-  /**
-   * The form data.
-   *
-   * @param email The email of the user.
-   * @param password The password of the user.
-   */
-  case class Data( email: String,
-                   password: String)
 }

@@ -28,11 +28,11 @@ object Product {
 
   class ProductTable(tag: Tag) extends GenericTable[Product](tag, "product"){
     override def id = column[UUID]("id", O.PrimaryKey, O.AutoInc)
-    def categoryID = column[UUID]("categoryID")
+    def categoryID = column[UUID]("category_id")
     def name = column[String]("name")
-    def desc = column[String]("name")
-    def imgSmallURL = column[String]("imgSmallURL")
-    def imgLargeURL = column[String]("imgLargeURL")
+    def desc = column[String]("desc")
+    def imgSmallURL = column[String]("img_small_url")
+    def imgLargeURL = column[String]("img_large_url")
     def comments = column[String]("comments")
     def feature = column[Boolean]("feature")
 
@@ -40,6 +40,4 @@ object Product {
 
     def * = (id.?, categoryID, name, desc, imgSmallURL, imgLargeURL, comments, feature.?)<>((Product.apply _).tupled, Product.unapply)
   }
-
-  val table = TableQuery[ProductTable]
 }

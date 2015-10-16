@@ -31,8 +31,8 @@ object Contact {
     override def id = column[UUID]("id", O.PrimaryKey, O.AutoInc)
     def name = column[String]("name")
     def email = column[String]("email")
-    def website = column[String]("webSite")
-    def textEmail = column[String]("textEmail")
+    def website = column[String]("web_site")
+    def textEmail = column[String]("text_email")
     def data = column[DateTime]("data")
     def sent = column[Boolean]("sent")
 

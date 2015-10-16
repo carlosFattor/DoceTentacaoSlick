@@ -1,13 +1,13 @@
 package models.DAOs
 
-import javax.inject.{Singleton, Inject}
-import play.api.{Logger, Play}
+import javax.inject.{Inject, Singleton}
+
+import play.api.db.slick.DatabaseConfigProvider
+import play.api.{Logger}
 import slick.driver.PostgresDriver.api._
 import models.User
 import models.User.UserTable
-import play.api.db.slick.DatabaseConfigProvider
 import slick.lifted.TableQuery
-
 import scala.concurrent.Future
 
 /**

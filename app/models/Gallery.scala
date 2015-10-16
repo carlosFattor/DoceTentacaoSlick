@@ -11,7 +11,11 @@ import slick.driver.JdbcProfile
 /**
  * Created by carlos on 14/10/15.
  */
-case class Gallery (id: Option[UUID], name: String, desc: String, imgSmallURL: String, imgLargeURL: String)
+case class Gallery (id: Option[UUID],
+                    name: String,
+                    desc: String,
+                    imgSmallURL: String,
+                    imgLargeURL: String)
 
 object Gallery {
   implicit val format: Format[Gallery] = Json.format[Gallery]
@@ -23,8 +27,8 @@ object Gallery {
     override def id = column[UUID]("id", O.PrimaryKey, O.AutoInc)
     def name = column[String]("name")
     def desc = column[String]("desc")
-    def imgSmallURL = column[String]("imgSmallURL")
-    def imgLargeURL = column[String]("imgLargeURL")
+    def imgSmallURL = column[String]("img_small_url")
+    def imgLargeURL = column[String]("img_large_url")
 
     def * = (id.?, name, desc, imgSmallURL, imgLargeURL)<>((Gallery.apply _).tupled, Gallery.unapply)
   }

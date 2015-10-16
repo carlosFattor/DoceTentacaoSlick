@@ -15,7 +15,8 @@ case class User(id: Option[UUID],
                 name: String,
                 email: String,
                 password: String,
-                desc: String)
+                avatarURL: String,
+                desc: String = "")
 
 object User {
   implicit val form: Format[User] = Json.format[User]
@@ -28,11 +29,11 @@ object User {
     def name = column[String]("name")
     def email = column[String]("email")
     def password = column[String]("password")
+    def avatarURL = column[String]("avatar_url")
     def desc = column[String]("desc")
 
-    def * = (id.?, name, email, password, desc)<>
+    def * = (id.?, name, email, password, avatarURL, desc)<>
       ((User.apply _).tupled, User.unapply)
   }
 
-  val table = TableQuery[UserTable]
 }

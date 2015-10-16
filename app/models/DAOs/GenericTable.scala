@@ -1,7 +1,6 @@
 package models.DAOs
 
 import java.util.UUID
-
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfig}
 import play.api.{Logger, Play}
 import slick.driver.JdbcProfile
