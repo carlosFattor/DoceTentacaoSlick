@@ -1,11 +1,12 @@
-package models.DAOs
+package models
 
 import java.util.UUID
 
+import models.DAOs.GenericTable
 import org.joda.time.DateTime
 import play.api.Play
 import play.api.db.slick.DatabaseConfigProvider
-import play.api.libs.json.{Json, Format}
+import play.api.libs.json.{Format, Json}
 import slick.driver.JdbcProfile
 import utils.SlickMapping.jodaDateTimeMapping
 

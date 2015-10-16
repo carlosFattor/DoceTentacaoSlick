@@ -1,15 +1,46 @@
-@(title: String)(content: Html)
+@()(content: Html)
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" ng-app="ndt-app">
     <head>
-        <title>@title</title>
+        <meta charset="utf-8">
+        <title>Nilda Doce&Tentação</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link href="//fonts.googleapis.com/css?family=Roboto|Montserrat:400,700|Open+Sans:400,300,600" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="//cdn.jsdelivr.net/animatecss/3.2.0/animate.css" rel="stylesheet">
+        <link rel="stylesheet" href="@routes.Assets.versioned("bower_components/angular-motion/dist/angular-motion.css")" />
+        <link rel="stylesheet" href="@routes.Assets.versioned("bower_components/bootstrap/dist/css/bootstrap.min.css")" />
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
-        <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+
     </head>
     <body>
         @content
+
+            <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+            <!-- build:js scripts/vendor.js -->
+            <!-- bower:js -->
+        <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("bower_components/jquery/dist/jquery.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("bower_components/angular/angular.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("bower_components/angular-animate/angular-animate.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("bower_components/bootstrap/dist/js/bootstrap.js")"></script>
+            <!-- endbower -->
+            <!-- endbuild -->
+
+            <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/app.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/value/configValue.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/controllers/ndtController.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/services/listAPIFactory.js")"></script>
+
+
     </body>
 </html>

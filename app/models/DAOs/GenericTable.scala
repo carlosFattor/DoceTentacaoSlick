@@ -7,7 +7,7 @@ import play.api.{Logger, Play}
 import slick.driver.JdbcProfile
 import slick.driver.PostgresDriver.api._
 import slick.lifted.Tag
-
+import scala.concurrent.ExecutionContext.Implicits._
 import scala.concurrent.Future
 
 /**
@@ -26,21 +26,33 @@ trait GenericCRUD[C <: GenericTable[T], T] extends HasDatabaseConfig[JdbcProfile
 
   def list: Future[Seq[C#TableElementType]] = {
     val list = table.result
-    Logger.info("Query: " + list.headOption.statements)
-    db.run(list)
+    Logger.info(s"Query list: ${list.headOption.statements}")
+    db.run(list).map(_.toList)
   }
-  def create(c: C#TableElementType): Future[UUID] = {
+
+  def insert(c: C#TableElementType): Future[UUID] = {
     val insertion = (table returning table.map(_.id)) += c
+    Logger.info(s"Query insert: ${insertion.statements}")
     db.run(insertion)
   }
-  def update(id: UUID, c: C#TableElementType): Future[Int] = db.run(queryById(id).update(c))
 
-  def delete(id: UUID): Future[Int] = db.run(queryById(id).delete)
+  def update(id: UUID, c: C#TableElementType): Future[Int] = {
+    Logger.info(s"Query update: ${queryById(id).update(c).statements}")
+    db.run(queryById(id).update(c))
+  }
 
-  def getByID(id: UUID): Future[Option[C#TableElementType]] = {
+  def delete(id: UUID): Future[Int] = {
+    Logger.info(s"Query delete: ${queryById(id).delete.statements}")
+    db.run(queryById(id).delete)
+  }
+
+  def findByID(id: UUID): Future[Option[C#TableElementType]] = {
+    Logger.info(s"Query findByID: ${queryById(id).result.headOption.statements}")
     db.run(queryById(id).result.headOption)
   }
+
   def count: Future[Int] = {
+    Logger.info(s"Query count: ${table.length.result.statements}")
     db.run(table.length.result)
   }
 }
