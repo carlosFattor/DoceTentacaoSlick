@@ -3,12 +3,22 @@
 # ~~~~
 
 # Home page
-POST        /admin/user/new/         controllers.UserControl.add
-POST        /admin/user/             controllers.UserControl.login
-GET         /admin/user/list/        controllers.UserControl.users
-GET         /                        controllers.Application.index
-GET         /list/                   controllers.Application.list
+GET         /                            controllers.Application.index
+GET         /list/                       controllers.Application.list
+
+#Manager User
+POST        /admin/user/new/             controllers.UserControl.add
+POST        /admin/user/                 controllers.UserControl.login
+POST        /admin/user/update/          controllers.UserControl.update
+GET         /admin/user/list/            controllers.UserControl.users
+GET         /admin/user/edit/:id/        controllers.UserControl.edit(id: java.util.UUID)
+
+#Manager Category
+POST        /admin/category/new/        controllers.CategoryControl.add
+GET         /admin/category/list/       controllers.CategoryControl.list
+GET         /admin/category/edit/:id/   controllers.CategoryControl.edit(id: java.util.UUID)
+
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file            controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file                controllers.Assets.versioned(path="/public", file: Asset)

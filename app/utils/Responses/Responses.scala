@@ -27,9 +27,6 @@ object EndpointResponse {
 }
 
 object ErrorResponse {
-  val INVALID_JSON = 1000
-  val NOT_ENOUGH_DATA = 1001
-  val UNAVAILABLE = 1002
 
   def apply(status: Int, message: String) = {
     EndpointResponse("NOK", JsNull, Option(ErrorResult(status, message)))

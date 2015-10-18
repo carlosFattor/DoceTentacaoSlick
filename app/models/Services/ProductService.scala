@@ -9,7 +9,7 @@ import scala.concurrent.Future
 /**
  * Created by carlos on 16/10/15.
  */
-class ProductServiceImp @Inject()(productDAO: ProductDAO) extends ProductService {
+class ProductService @Inject()(productDAO: ProductDAO)  {
 
   def findListProduct(): Future[Seq[Product]] = {
     ???
@@ -30,13 +30,4 @@ class ProductServiceImp @Inject()(productDAO: ProductDAO) extends ProductService
     ???
   }
 
-}
-
-trait ProductService {
-  def findListProduct(): Future[Seq[Product]]
-  def addProduct(user: Product): Future[Option[Product]]
-  def findProduct(id: UUID): Future[Option[Product]]
-  def updateProduct(user: Product): Future[Int]
-  def removeProduct(id: UUID): Future[Int]
-  def findProductByName(email: String): Future[Option[Product]]
 }

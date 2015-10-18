@@ -11,7 +11,7 @@ import scala.concurrent.Future
 /**
  * Created by carlos on 16/10/15.
  */
-class UserService @Inject()(userDAO: UserDAO){
+class UserService @Inject()(userDAO: UserDAO) {
 
   def findListUser(): Future[Seq[User]] = {
     userDAO.list
@@ -45,5 +45,9 @@ class UserService @Inject()(userDAO: UserDAO){
     userDAO.findByEmail(email).map { user =>
       user.filter(u => u.email.equalsIgnoreCase(Base64.encodeString(password)))
     }
+  }
+
+  def deleteUser(id: UUID) = {
+    userDAO.delete(id)
   }
 }
