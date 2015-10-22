@@ -32,7 +32,7 @@ class CategoryControl @Inject()(categoryService: CategoryService, val messagesAp
       Future.successful(BadRequest(Json.toJson(response)))
     }, { category =>
       categoryService.add(category).map {
-        case Some(cat) => Ok(Json.toJson(SuccessResponse(cat)))
+        case Some(cat) => Created(Json.toJson(SuccessResponse(cat)))
         case None => BadRequest(Json.toJson(ErrorResponse(BAD_REQUEST, messagesApi("cat.not.found"))))
       }
     })
@@ -54,7 +54,7 @@ class CategoryControl @Inject()(categoryService: CategoryService, val messagesAp
     }, { category =>
       categoryService.update(category).map { resp =>
         if(resp == 1){
-          Ok(Json.toJson(SuccessResponse(resp)))
+          Created(Json.toJson(SuccessResponse(resp)))
         } else {
           BadRequest(Json.toJson(ErrorResponse(BAD_REQUEST, messagesApi("cat.not.found"))))
         }
@@ -62,4 +62,13 @@ class CategoryControl @Inject()(categoryService: CategoryService, val messagesAp
     })
   }
 
+  def delete(id: UUID) = Action.async { implicit request =>
+    categoryService.delete(id).map{ resp =>
+      if (resp == 1) {
+        Ok(Json.toJson(SuccessResponse(resp)))
+      } else {
+        BadRequest(Json.toJson(ErrorResponse(BAD_REQUEST, messagesApi("cat.not.found"))))
+      }
+    }
+  }
 }

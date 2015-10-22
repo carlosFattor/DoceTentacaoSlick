@@ -21,7 +21,19 @@ case class Product (id: Option[UUID],
                     feature: Option[Boolean] = Option(false))
 
 object Product {
+  import play.api.data.Form
+  import play.api.data.Forms._
   implicit val form: Format[Product] = Json.format[Product]
+  val formProduct = Form(mapping(
+    "id" -> optional(uuid),
+    "categoryID" -> uuid,
+    "name" -> nonEmptyText,
+    "desc" -> text,
+    "imgSmallURL" -> text,
+    "imgLargeURL" -> text,
+    "comments" -> text,
+    "featured" -> optional(boolean)
+    )(Product.apply)(Product.unapply))
 
   val dbConfig = DatabaseConfigProvider.get[JdbcProfile](Play.current)
   import dbConfig.driver.api._

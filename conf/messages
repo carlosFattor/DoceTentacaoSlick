@@ -45,7 +45,11 @@ url.small=URL da imagem menor
 url.large=URL da imagem maior
 our.products=Nossos produtos!
 our.products.detail=Confira todos os nossos produtos e delicie-se!
-
+prod.not_found=Produto não encontrado
+prod.fail.prod=Erro ao tentar encontrar o produto
+prod.form.error=Dados do fonmulario incompletos
+prod.add.fail=Não foi possivel adicionar o novo produto
+prod.up.fail=Não foi possivel atualizar o produto
 
 #Gallery
 gallery=Galeria

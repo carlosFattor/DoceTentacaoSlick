@@ -13,4 +13,5 @@ import slick.lifted.TableQuery
 class CategoryDAO @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends GenericCRUD[CategoryTable, Category]{
 
   override val table = TableQuery[CategoryTable]
+
 }

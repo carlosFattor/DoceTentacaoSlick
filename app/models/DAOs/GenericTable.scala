@@ -23,6 +23,14 @@ trait GenericCRUD[C <: GenericTable[T], T] extends HasDatabaseConfig[JdbcProfile
 
   private val queryById = Compiled((id: Rep[UUID]) => table.filter(_.id === id))
 
+  val fulltextMatch = SimpleExpression.binary[String,String,Boolean] { (col,search,qb) =>
+      qb.sqlBuilder += "match("
+      qb.expr(col)
+      qb.sqlBuilder += ") against ("
+      qb.expr(search)
+      qb.sqlBuilder += " in boolean mode)"
+    }
+
   def list: Future[Seq[C#TableElementType]] = {
     val list = table.result
     Logger.info(s"Query list: ${list.headOption.statements}")

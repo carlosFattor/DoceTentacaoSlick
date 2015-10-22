@@ -4,14 +4,14 @@ import java.util.UUID
 import javax.inject.Inject
 
 import models.Category
-import models.DAOs.CategoryDAO
+import models.DAOs.{ProductDAO, CategoryDAO}
 import scala.concurrent.ExecutionContext.Implicits._
 import scala.concurrent.Future
 
 /**
  * Created by carlos on 17/10/15.
  */
-class CategoryService @Inject()(categoryDAO: CategoryDAO) {
+class CategoryService @Inject()(categoryDAO: CategoryDAO, prodDAO: ProductDAO) {
 
   def add(cat: Category): Future[Option[Category]] = {
     categoryDAO.insert(cat).map{ uuid =>
@@ -31,4 +31,15 @@ class CategoryService @Inject()(categoryDAO: CategoryDAO) {
     categoryDAO.update(cat.id.get, cat)
   }
 
+  def delete(id: UUID): Future[Int] = {
+    val sizeF = prodDAO.countByIDCategory(id)
+
+    sizeF.flatMap{ size =>
+      if(size == 0){
+        categoryDAO.delete(id)
+      } else {
+        Future.successful(0)
+      }
+    }
+  }
 }
