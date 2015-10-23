@@ -54,6 +54,11 @@ prod.up.fail=Não foi possivel atualizar o produto
 #Gallery
 gallery=Galeria
 add.iten=Adicionar item a galeria
+gal.find.nok=Não foram encontrados produtos na galeria
+gal.add.error=Dados para cadastrarna galeria insuficiente
+gal.add.fail=Não foi possivel cadastrar a galeria
+gal.find.error=Não foi possivel encontrar a galeria
+gal.del.error=Não foi possivel apagar a galleria
 
 #Infos
 info.about=Somos um grupo familiar, que trabalha para atender a necessidades de nossos amigos. Estamos sempre tentando criar mais e melhor, se você tiver a necessidade de algo de nossos produtos diferenciado, por-favor, entre em contato, estaremos sempre dispostos a ajuda-lo a ter o que você imagina poder ter!

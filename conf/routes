@@ -27,6 +27,12 @@ GET           /admin/product/list/               controllers.ProductControl.list
 GET           /admin/product/edit/:id/           controllers.ProductControl.edit(id: java.util.UUID)
 DELETE        /admin/product/delete/:id/         controllers.ProductControl.delete(id: java.util.UUID)
 
+#Manager Gallery
+POST          /admin/gallery/new/                controllers.GalleryControl.add
+PUT           /admin/gallery/new/                controllers.GalleryControl.update
+GET           /admin/gallery/list/               controllers.GalleryControl.list
+GET           /admin/gallery/edit/:id/           controllers.GalleryControl.edit(id: java.util.UUID)
+DELETE        /admin/gallery/delete/:id/         controllers.GalleryControl.delete(id: java.util.UUID)
 
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file                      controllers.Assets.versioned(path="/public", file: Asset)
