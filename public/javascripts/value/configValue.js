@@ -3,5 +3,5 @@
  */
 'use strict';
 angular.module("ndt-app").value("config", {
-    baseURL: "http://localhost:9000"
+    baseURL: "http://192.168.0.15:9000"
 });

@@ -3,18 +3,28 @@
  */
 'use strict';
 angular.module("ndt-app").controller("ndtController", function ($scope, listAPI) {
-    $scope.message = "Hello World!!!";
+    $scope.message = "";
     $scope.app = "Nilda Doce Tentação";
-    $scope.lista = []
+    $scope.listaCategory = [];
+    $scope.listaProductFeatured = [];
 
-    var myLista = function () {
-        listAPI.getList()
+    var myList = function () {
+        listAPI.getListCategory()
             .success(function (data, status) {
-                $scope.lista = data;
+                $scope.listaCategory = data.response;
             }).error(function (data, status) {
-                $scope.message = "não foi possivel carregar os dados!";
-            });
+                $scope.message = "não foi possivel carregar os dados! "+status;
+            })
+
+        listAPI.getListProductFeatured()
+            .success(function(data, status){
+                $scope.listaProductFeatured = data.response;
+            })
+            .error(function(data, status){
+                $scope.message = "não foi possivel carregar os dados! "+status;
+            })
+
     }
 
-    myLista();
+    myList();
 });

@@ -1,0 +1,200 @@
+.menu {
+    width: 550px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Lobster', 'cursive', serif;
+    font-size: xx-large;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+}
+
+#title h1 {
+    color: white;
+    font-size: large;
+}
+
+#contact {
+    color: white;
+}
+
+.error {
+    border: 1px solid #CC4E83;
+    width: 200px;
+    box-shadow: 0px 0px 6px #ED0F0F;
+}
+
+#contact p {
+    font-size: 10px;
+    font-family: sans-serif;
+    margin: -2px;
+}
+
+#contact a img {
+    margin-right: 10px;
+}
+
+.navbar-brand {
+    float: none;
+}
+
+.navbar-center {
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    margin: auto;
+    margin-bottom: -40px;
+}
+
+.navbar-nav {
+    display: inline-block;
+    float: none;
+    margin: 0;
+}
+
+.center-block {
+    display: block;
+    text-align: center;
+    margin: auto;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #E5E5E5;
+    width: 200px;
+    color: #999999;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+}
+
+textarea {
+    width: 400px;
+    height: 150px;
+    max-width: 400px;
+    line-height: 18px;
+}
+
+input:hover, textarea:hover, input:focus, textarea:focus {
+    border: 1px solid #C9C9C9;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
+}
+
+.form label {
+    margin-left: 10px;
+    color: #999999;
+}
+
+.submit input {
+    width: 100px;
+    height: 40px;
+    background-color: #474E69;
+    color: #FFF;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+ul {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+ul li {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+ul li img {
+    cursor: pointer;
+}
+
+dt {
+    position: absolute;
+    margin-left: 200px;
+    margin-top: 10px;
+}
+
+/* Webfont link */
+@import url(http://fonts.googleapis.com/css?family=Unica+One);
+
+/* Plugin base styles */
+
+.slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slides {
+    position: relative;
+    padding: 0;
+    list-style: none;
+    letter-spacing: 0;
+    word-spacing: 0;
+    font-size: 0;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.slides li {
+    display: inline-block;
+    -webkit-backface-visibility: hidden;
+}
+
+.slides li img {
+    width: 100%;
+    height: auto;
+}
+
+/* Non-plugin styles */
+
+.slider li img {
+    height: 200px;
+}
+
+.slide-nav {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+
+}
+
+.slide-nav ul {
+    letter-spacing: 0;
+    word-spacing: 0;
+    font-size: 0;
+
+}
+
+.slide-nav li {
+    display: inline-block;
+}
+
+.slide-nav li a {
+    display: block;
+    color: #444;
+    background: #FFF;
+    text-decoration: none;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    font-size: 12px;
+    text-align: center;
+    margin: 0 0 0 6px;
+}
+
+.slide-nav li a.active {
+    color: #DEBB1E;
+}

@@ -4,10 +4,20 @@
 'use strict';
 angular.module("ndt-app").factory("listAPI", function($http, config){
     var _getList = function(){
-        return $http.get(config.baseURL+"/list/")
-    }
+        return $http.get(config.baseURL+"/list/");
+    };
+
+    var _getListCategory = function() {
+        return $http.get(config.baseURL+"/category/list/");
+    };
+
+    var _getListProductFeatured = function () {
+        return $http.get(config.baseURL+"/product/list_featured/");
+    };
 
     return {
-        getList: _getList
-    }
+        getList: _getList,
+        getListCategory: _getListCategory,
+        getListProductFeatured: _getListProductFeatured
+    };
 });

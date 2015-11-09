@@ -24,6 +24,13 @@ class ProductControl @Inject()(prodService: ProductService, val messagesApi: Mes
     }
   }
 
+  def listFeatured = Action.async { implicit request =>
+    prodService.findListProductFeatured().map {
+      case prods: Seq[models.Product] => Ok(Json.toJson(SuccessResponse(prods)))
+      case _ => BadRequest(Json.toJson(ErrorResponse(BAD_REQUEST, messagesApi("prod.fail.prod"))))
+    }
+  }
+
   def add = Action.async(parse.json) { implicit request =>
     val incomingProd = Product.formProduct.bindFromRequest()
 
