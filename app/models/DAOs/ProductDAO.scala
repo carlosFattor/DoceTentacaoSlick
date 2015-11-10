@@ -27,6 +27,13 @@ class ProductDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvide
     db.run(queryByFeatured).map(_.toList)
   }
 
+  def findByIdCategory(id: UUID): Future[Seq[Product]] = {
+    val queryByCategory = table.filter(_.categoryID === id).result
+    Logger.info(s"Query listByIdCategory: ${queryByCategory.statements}")
+
+    db.run(queryByCategory).map(_.toList)
+  }
+
   def findByEmail(email: String):Future[Option[Product]] = {
     val queryByEmail = for {
       prod <- table if fulltextMatch(prod.name, email)

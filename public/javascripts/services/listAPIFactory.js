@@ -15,9 +15,14 @@ angular.module("ndt-app").factory("listAPI", function($http, config){
         return $http.get(config.baseURL+"/product/list_featured/");
     };
 
+    var _getListProducts= function(id) {
+        return $http.get(config.baseURL+"/product/list_products/"+id+"/");
+    }
+
     return {
         getList: _getList,
         getListCategory: _getListCategory,
-        getListProductFeatured: _getListProductFeatured
+        getListProductFeatured: _getListProductFeatured,
+        getListProducts: _getListProducts
     };
 });

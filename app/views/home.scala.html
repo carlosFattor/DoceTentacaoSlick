@@ -1,9 +1,25 @@
-@()
+@()(implicit request: RequestHeader, messages: Messages)
 
 <div>
-    home
-    <h1>{{app}}</h1>
-    <h1>Home</h1>
-    <h1 ng-bind="message"></h1>
+    <div class="row">
+        <div class="col-xs-9 col-sm-4 col-md-4" >
+
+        </div>
+        <div class="col-md-4">
+            <h2>@messages("products")</h2>
+            <p><img src="@routes.Assets.versioned("img/icons/cake_1.png")" style="float : left ;" class="img-rounded"/>
+                @messages("info.ingredient")
+            </p>
+
+        </div>
+        <div class="col-md-4">
+            <h2>@messages("clients")</h2>
+            <p><img src="@routes.Assets.versioned("img/icons/customer.png")" style="float : left ;" class="img-rounded"/>
+                @messages("info.clients")
+            </p>
+
+        </div>
+    </div>
+    <hr>
 
 </div>

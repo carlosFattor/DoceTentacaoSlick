@@ -1,10 +1,13 @@
 package controllers
 
+import javax.inject.Inject
+
+import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.libs.json.Json
 import play.api.mvc._
 import play.api.routing.JavaScriptReverseRouter
 
-class Application extends Controller {
+class Application @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport{
 
   def index = Action {
     Ok(views.html.index())
@@ -16,16 +19,11 @@ class Application extends Controller {
     Ok(Json.toJson(myList))
   }
 
-  /**
-   * Provides the desired template.
-   *
-   * @param template The template to provide.
-   * @return The template.
-   */
   def view(template: String) = Action { implicit request =>
     template match {
       case "home" => Ok(views.html.home())
-      case "produtos" => Ok(views.html.produtos())
+      case "lista_produtos" => Ok(views.html.lista_produtos())
+      case "produto" => Ok(views.html.produto())
       case "categorias" => Ok(views.html.categorias())
       case "galeria" => Ok(views.html.galeria())
       case "contato" => Ok(views.html.contato())

@@ -5,26 +5,21 @@
 angular.module("ndt-app").controller("ndtController", function ($scope, listAPI) {
     $scope.message = "";
     $scope.app = "Nilda Doce Tentação";
-    $scope.listaCategory = [];
     $scope.listaProductFeatured = [];
+    $scope.myInterval = 3000;
+    $scope.noWrapSlides = false;
+    $scope.slides = [];
 
     var myList = function () {
-        listAPI.getListCategory()
-            .success(function (data, status) {
-                $scope.listaCategory = data.response;
-            }).error(function (data, status) {
-                $scope.message = "não foi possivel carregar os dados! "+status;
-            })
-
         listAPI.getListProductFeatured()
-            .success(function(data, status){
+            .success(function (data, status) {
                 $scope.listaProductFeatured = data.response;
             })
-            .error(function(data, status){
-                $scope.message = "não foi possivel carregar os dados! "+status;
+            .error(function (data, status) {
+                $scope.message = "não foi possivel carregar os dados! " + status;
             })
-
     }
 
     myList();
+
 });

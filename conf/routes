@@ -29,6 +29,8 @@ DELETE        /admin/category/delete/:id/        controllers.CategoryControl.del
 #Public Product
 GET           /product/list/                     controllers.ProductControl.list
 GET           /product/list_featured/            controllers.ProductControl.listFeatured
+GET           /product/list_products/:id/        controllers.ProductControl.getList(id: java.util.UUID)
+GET           /product/get/:id/                  controllers.ProductControl.get(id: java.util.UUID)
 
 #Manager Product
 POST          /admin/product/new/                controllers.ProductControl.add

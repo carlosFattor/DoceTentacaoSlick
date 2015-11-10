@@ -20,6 +20,10 @@ class ProductService @Inject()(productDAO: ProductDAO) {
     productDAO.listFeatured()
   }
 
+  def findByIdCategory(id: UUID): Future[Seq[Product]] = {
+    productDAO.findByIdCategory(id)
+  }
+
   def addProduct(prod: Product): Future[Option[Product]] = {
     productDAO.insert(prod).map { uuid =>
       Option(prod.copy(id = Option(uuid)))

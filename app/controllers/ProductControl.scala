@@ -31,6 +31,20 @@ class ProductControl @Inject()(prodService: ProductService, val messagesApi: Mes
     }
   }
 
+  def getList(id: UUID) = Action.async { implicit request =>
+    prodService.findByIdCategory(id).map{
+      case prods: Seq[models.Product] => Ok(Json.toJson(SuccessResponse(prods)))
+      case _ => BadRequest(Json.toJson(ErrorResponse(BAD_REQUEST, messagesApi("prod.fail.prod"))))
+    }
+  }
+
+  def get(id: UUID) = Action.async { implicit request =>
+    prodService.findProduct(id).map {
+      case Some(prod) => Ok(Json.toJson(SuccessResponse(prod)))
+      case None => NotFound(Json.toJson(ErrorResponse(NOT_FOUND, messagesApi("prod.not_found"))))
+    }
+  }
+
   def add = Action.async(parse.json) { implicit request =>
     val incomingProd = Product.formProduct.bindFromRequest()
 
