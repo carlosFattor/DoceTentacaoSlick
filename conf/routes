@@ -39,6 +39,9 @@ GET           /admin/product/list/               controllers.ProductControl.list
 GET           /admin/product/edit/:id/           controllers.ProductControl.edit(id: java.util.UUID)
 DELETE        /admin/product/delete/:id/         controllers.ProductControl.delete(id: java.util.UUID)
 
+#Public Gallery
+GET           /gallery/list/                     controllers.GalleryControl.list
+
 #Manager Gallery
 POST          /admin/gallery/new/                controllers.GalleryControl.add
 PUT           /admin/gallery/new/                controllers.GalleryControl.update

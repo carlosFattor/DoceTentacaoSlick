@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
+@()
 
-</body>
-</html>
+<ul class="magnific-gallery">
+
+    <li ng-repeat="gal in galleryItens">
+        <a href="{{gal.imgLargeURL}}" title="{{gal.name}} .">
+            <img src="{{gal.imgSmallURL}}" alt="" style="margin: 5px;" class="img-rounded"/>
+        </a>
+    </li>
+
+</ul>
+

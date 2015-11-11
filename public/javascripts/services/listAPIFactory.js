@@ -11,6 +11,9 @@ angular.module("ndt-app").factory("listAPI", function($http, config){
         return $http.get(config.baseURL+"/category/list/");
     };
 
+    var _getProduct = function(id) {
+        return $http.get(config.baseURL+"/product/get/"+id+"/");
+    }
     var _getListProductFeatured = function () {
         return $http.get(config.baseURL+"/product/list_featured/");
     };
@@ -19,10 +22,16 @@ angular.module("ndt-app").factory("listAPI", function($http, config){
         return $http.get(config.baseURL+"/product/list_products/"+id+"/");
     }
 
+    var _getListGallery = function() {
+        return $http.get(config.baseURL+"/gallery/list/")
+    }
+
     return {
         getList: _getList,
         getListCategory: _getListCategory,
+        getProduct: _getProduct,
         getListProductFeatured: _getListProductFeatured,
-        getListProducts: _getListProducts
+        getListProducts: _getListProducts,
+        getListGallery: _getListGallery
     };
 });

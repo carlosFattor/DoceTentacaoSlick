@@ -45,12 +45,13 @@ angular.module("ndt-app", ['ui.router']).config(function ($stateProvider, $urlRo
             url: '/product/list_products/:id/',
             templateUrl: '/views/lista_produtos.html',
             controller: function($scope, listAPI, $stateParams){
+                $scope.msgFail;
                 $scope.products = [];
 
                 var myList = function() {
                     listAPI.getListProducts($stateParams.id)
                         .success(function(data, status){
-                            $scope.produts = data.response;
+                            $scope.products = data.response;
                         })
                         .error(function(data, status){
                             $scope.msgFail = "não foi possivel carregar os dados! " + status;
@@ -61,11 +62,49 @@ angular.module("ndt-app", ['ui.router']).config(function ($stateProvider, $urlRo
         })
         .state('produto_detalhe', {
             url: '/product/get/:id/',
-            templateUrl: '/views/produto.html'
+            templateUrl: '/views/produto.html',
+            controller: function($scope, listAPI, $stateParams){
+                $scope.msgFail;
+                $scope.product;
+
+                var myProduct = function(){
+                    listAPI.getProduct($stateParams.id)
+                        .success(function(data, status){
+                            $scope.product = data.response;
+                        })
+                        .error(function(data, status){
+                            $scope.msgFail = "não foi possivel carregar os dados! " + status;
+                        })
+                }
+                myProduct();
+            }
         })
         .state('galeria', {
             url: '/galeria/',
-            templateUrl: 'views/galeria.html'
+            templateUrl: 'views/galeria.html',
+            controller: function($scope, listAPI){
+                $scope.msgFail;
+                $scope.galleryItens = [];
+                var funcGallery = function(){
+                    $('ul.magnific-gallery').each(function () {
+                        console.log( "ready!" );
+                        openGallery.call(this, 'mfp-example');
+                    });
+                }
+
+
+                var myGallery = function(){
+                    listAPI.getListGallery()
+                        .success(function(data, status){
+                            $scope.galleryItens = data.response;
+                        })
+                        .error(function(data, status){
+                            $scope.msgFail = "não foi possivel carregar os dados! " + status;
+                        })
+                }
+                myGallery();
+                funcGallery();
+            }
         })
         .state('contato', {
             url: '/contato/',
@@ -76,3 +115,5 @@ angular.module("ndt-app", ['ui.router']).config(function ($stateProvider, $urlRo
             templateUrl: '/views/saiba.html'
         })
 });
+
+
