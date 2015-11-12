@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
-
-</body>
-</html>
+@()(implicit messages: Messages)
+<div class="col-xs-9 col-sm-6 col-md-6" style="margin-bottom : 100px;">
+    <h2>@messages("contact")</h2>
+    <form name="contactForm" ng-model="contact">
+        <p class="name">
+            <input type="text" name="name" ng-model="contact.name" required>
+            <span style="color : red ;" ng-show="contactForm.contact.name.$dirty && contactForm.contact.name.$invalid"></span>
+        </p>
+        <p class="email">
+            <input type="email" name="email" ng-model="contact.email" required>
+            <span style="color : red ;" ng-show="contactForm.contact.email.$dirty && contactForm.contact.email.$invalid"></span>
+        </p>
+        <p class="web">
+            <input type="text" name="site" ng-model="contact.site">
+        </p>
+        <p class="text">
+            <textarea rows="5" cols="20" name="about" ng-model="contact.about" required></textarea>
+            <span style="color : red ;" ng-show="contactForm.contact.about.$dirty && contactForm.contact.about.$invalid"></span>
+        </p>
+    </form>
+</div>
+<div class="col-md-6 hidden-xs">
+    <aside>
+        <blockquote>
+            <p>Agradecemos pelo interesse em entrar em contato conosco, fique a vontade para reclamações ou sugestões.
+                <br />Use tambêm este formulário para consultar nossos preços.</p>
+            <h3>Deixe sua sugestão!</h3>
+            <footer>Nossa equipe agradece. <cite title="Obrigado!">Obrigado!</cite></footer>
+        </blockquote>
+    </aside>
+</div>

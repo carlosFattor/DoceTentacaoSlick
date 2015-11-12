@@ -70,7 +70,7 @@ input, textarea {
     border: 1px solid #E5E5E5;
     width: 200px;
     color: #999999;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+
     -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
     -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
 }
@@ -538,4 +538,18 @@ dt {
     {
         margin-top: -3px;
     }
+}
+
+#map {
+    height:420px;
+    width:600px;
+}
+.infoWindowContent {
+    font-size:  14px !important;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+h2 {
+    margin-bottom:0;
+    margin-top: 0;
 }
