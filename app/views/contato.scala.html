@@ -1,23 +1,42 @@
 @()(implicit messages: Messages)
 <div class="col-xs-9 col-sm-6 col-md-6" style="margin-bottom : 100px;">
     <h2>@messages("contact")</h2>
-    <form name="contactForm" ng-model="contact">
+    <form name="contactForm" class="form">
         <p class="name">
-            <input type="text" name="name" ng-model="contact.name" required>
-            <span style="color : red ;" ng-show="contactForm.contact.name.$dirty && contactForm.contact.name.$invalid"></span>
+            <input type="text" name="name" ng-model="contact.name" placeholder="@messages("name")" ng-required="true" ng-minlength="3"/>*
         </p>
+        <div ng-show="contactForm.name.$error.required && contactForm.name.$dirty" class="alert alert-danger">
+            <p>Por favor, preencha o seu nome.</p>
+        </div>
+        <div ng-show="contactForm.name.$error.minlength" class="alert alert-danger">
+            <p>O campo nome deve conter no mínimo 3 caractéres.</p>
+        </div>
+
         <p class="email">
-            <input type="email" name="email" ng-model="contact.email" required>
-            <span style="color : red ;" ng-show="contactForm.contact.email.$dirty && contactForm.contact.email.$invalid"></span>
+            <input type="email" name="email" ng-model="contact.email" placeholder="@messages("email")" ng-required="true" ng-minlength="7">*
         </p>
+        <div ng-show="contactForm.email.$invalid && contactForm.email.$dirty" class="alert alert-danger">
+            <p>Por favor, preencha o seu e-mail.</p>
+        </div>
+
         <p class="web">
-            <input type="text" name="site" ng-model="contact.site">
+            <input type="text" name="site" ng-model="contact.site" placeholder="@messages("web")">
+        </p>
+        <p class="tel">
+            <input type="text" name="tel" ng-model="contact.tel" placeholder="@messages("tel")">
         </p>
         <p class="text">
-            <textarea rows="5" cols="20" name="about" ng-model="contact.about" required></textarea>
-            <span style="color : red ;" ng-show="contactForm.contact.about.$dirty && contactForm.contact.about.$invalid"></span>
+            <textarea rows="5" cols="20" name="textEmail" ng-model="contact.textEmail" ng-required="true"></textarea>
+            <br />*
+            <span style="color: red;" ng-show="contactForm.contact.textEmail.$invalid"></span>
         </p>
+        <div class="frmRequired"><h6> * @messages("contact.required")</h6></div>
+
     </form>
+
+    <p class="submit">
+        <input type="submit" value="@messages("send")" ng-click="sendContact(contact)" ng-disabled="contactForm.$invalid"/>
+    </p>
 </div>
 <div class="col-md-6 hidden-xs">
     <aside>

@@ -25,6 +25,7 @@ send=Enviar
 featured=Destaque
 clients=Clientes
 tips=Dicas
+tel=Telefone
 
 
 #Category | Product
@@ -74,8 +75,10 @@ info.modal=Nossa seção de dicas de culinária está sendo desenvolvida, em bre
 
 #Contact
 contact=Contato
+contact.required=Campos obrigatórios.
 email.send=E-mail enviado com sucesso
 email.send.fail=Erro ao enviar o e-mail, por favor tente novamente!
+
 
 #ERROR
 request.error=error value from request

@@ -40,6 +40,10 @@ p {
     margin-right: 10px;
 }
 
+.frmRequired h6 {
+    font-size: 20px;
+}
+
 .navbar-brand {
     float: none;
 }

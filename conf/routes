@@ -49,5 +49,8 @@ GET           /admin/gallery/list/               controllers.GalleryControl.list
 GET           /admin/gallery/edit/:id/           controllers.GalleryControl.edit(id: java.util.UUID)
 DELETE        /admin/gallery/delete/:id/         controllers.GalleryControl.delete(id: java.util.UUID)
 
+#Public Contact
+POST          /contact/send/                     controllers.ContactControl.sendContact
+
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file                      controllers.Assets.versioned(path="/public", file: Asset)

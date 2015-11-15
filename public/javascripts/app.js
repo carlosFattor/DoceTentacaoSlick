@@ -108,7 +108,26 @@ angular.module("ndt-app", ['ui.router']).config(function ($stateProvider, $urlRo
         .state('contato', {
             url: '/contato/',
             templateUrl: 'views/contato.html',
-            controller: function($scope, $stateParams){
+            controller: function($scope, listAPI){
+                $scope.contact2send;
+                $scope.contactSendOk = false;
+                $scope.contactSendNOk = false;
+                $scope.msgFail;
+
+                $scope.sendContact = function(contact){
+                    $scope.contact2send = angular.copy(contact);
+                    listAPI.sendContact(angular.copy(contact))
+                        .success(function(data, status){
+                            delete $scope.contact;
+                            $scope.contactSendOk = true;
+                            $scope.contactForm.$setPristine();
+                        })
+                        .error(function(data, status){
+                            $scope.msgFail = "não foi possivel carregar os dados! " + status;
+                            $scope.contactSendOk = true;
+                        })
+
+                }
 
             }
         })
