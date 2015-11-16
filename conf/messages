@@ -78,6 +78,7 @@ contact=Contato
 contact.required=Campos obrigatórios.
 email.send=E-mail enviado com sucesso
 email.send.fail=Erro ao enviar o e-mail, por favor tente novamente!
+email.subject="Email de contato"
 
 
 #ERROR

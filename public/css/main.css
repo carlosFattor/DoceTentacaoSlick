@@ -1,3 +1,15 @@
+button.btn {
+    background-color: #0654ba;
+    border-radius: 0.25em;
+    color: white;
+    padding: 0.25em 1em;
+}
+
+button[disabled] {
+    background-color: #999;
+    opacity: 0.5;
+}
+
 .menu {
     width: 550px;
     text-align: center;
@@ -556,4 +568,16 @@ dt {
 h2 {
     margin-bottom:0;
     margin-top: 0;
+}
+
+#slides_control > div{
+    height: 200px;
+}
+
+#slides_control {
+    position:absolute;
+    width: 400px;
+    left:50%;
+    top:20px;
+    margin-left:-200px;
 }

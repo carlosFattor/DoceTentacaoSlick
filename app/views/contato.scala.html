@@ -1,5 +1,7 @@
 @()(implicit messages: Messages)
 <div class="col-xs-9 col-sm-6 col-md-6" style="margin-bottom : 100px;">
+    <div class="alert alert-danger" role="alert" ng-bind="msgFail" ng-show="statusNOk"></div>
+    <div class="alert alert-success" role="alert" ng-bind="msgOk" ng-show="statusOk"></div>
     <h2>@messages("contact")</h2>
     <form name="contactForm" class="form">
         <p class="name">
@@ -20,10 +22,10 @@
         </div>
 
         <p class="web">
-            <input type="text" name="site" ng-model="contact.site" placeholder="@messages("web")">
+            <input type="text" name="site" ng-model="contact.website" placeholder="@messages("web")">
         </p>
         <p class="tel">
-            <input type="text" name="tel" ng-model="contact.tel" placeholder="@messages("tel")">
+            <input type="text" name="tel" ng-model="contact.phone" placeholder="@messages("tel")">
         </p>
         <p class="text">
             <textarea rows="5" cols="20" name="textEmail" ng-model="contact.textEmail" ng-required="true"></textarea>

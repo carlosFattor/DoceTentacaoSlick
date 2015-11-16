@@ -13,7 +13,8 @@ libraryDependencies ++= Seq(
   "org.postgresql" % "postgresql" % "9.4-1201-jdbc41",
   "com.typesafe.play" %% "play-slick" % "1.1.0",
   "com.typesafe.play" %% "play-slick-evolutions" % "1.1.0",
-  "com.zaxxer" % "HikariCP" % "2.4.1"
+  "com.zaxxer" % "HikariCP" % "2.4.1",
+  "com.typesafe.play" %% "play-mailer" % "3.0.1"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"

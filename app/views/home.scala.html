@@ -3,7 +3,18 @@
 <div>
     <div class="row">
         <div class="col-xs-9 col-sm-4 col-md-4" >
-
+            <div id="slides_control">
+                <div>
+                    <uib-carousel interval="myInterval">
+                        <uib-slid ng-repeat="slide in slides" active="slide.active">
+                            <img ng-src="{{slide.image}}">
+                            <div class="carousel-caption">
+                                <h4>Slide {{$index+1}}</h4>
+                            </div>
+                        </uib-slid>
+                    </uib-carousel>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             <h2>@messages("products")</h2>
