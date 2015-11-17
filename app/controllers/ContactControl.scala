@@ -24,12 +24,14 @@ class ContactControl @Inject()(emailService: EmailService, contService: ContactS
     incomingContact.fold({ error =>
       val response = ErrorResponse(BAD_REQUEST, messagesApi("request.error"))
       Future.successful(BadRequest(Json.toJson(response)))
+
     }, { data =>
 
       emailService.sendEmailContact(data).onComplete {
         case Success(value) => contService.addContact(data.copy(sent = Option(value), data = Option(new DateTime())))
         case Failure(e) => contService.addContact(data.copy(sent = Option(false), data = Option(new DateTime())))
       }
+
       Future.successful(Created(Json.toJson(SuccessResponse(messagesApi("email.send")))))
     })
   }

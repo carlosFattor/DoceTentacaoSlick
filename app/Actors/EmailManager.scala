@@ -28,6 +28,7 @@ class EmailManager @Inject()(mailer: MailerClient, val messagesApi: MessagesApi)
   }
 
   override def preStart = {
+
     val workerCont = context.actorOf(Props(new EmailActor(mailer)), "emailToContact")
 
     workers= workers + (workerContact -> workerCont)
