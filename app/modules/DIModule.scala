@@ -1,7 +1,7 @@
 package modules
 
 
-import Actors.EmailActor
+import Actors.EmailManager
 import com.google.inject.AbstractModule
 import play.api.libs.concurrent.AkkaGuiceSupport
 
@@ -11,6 +11,6 @@ import play.api.libs.concurrent.AkkaGuiceSupport
 class DIModule extends AbstractModule with AkkaGuiceSupport{
 
   def configure(): Unit = {
-    bindActor[EmailActor]("email-actor")
+    bindActor[EmailManager]("emailWork")
   }
 }

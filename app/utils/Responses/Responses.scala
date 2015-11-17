@@ -1,6 +1,6 @@
 package utils.Responses
 
-import models.User
+import models.{Contact, User}
 import play.api.libs.json._
 
 /**
@@ -38,3 +38,5 @@ object SuccessResponse {
     EndpointResponse("OK", Json.toJson(successResponse), None)
   }
 }
+
+case class ContactUnavailable(cont: Contact) extends Throwable
