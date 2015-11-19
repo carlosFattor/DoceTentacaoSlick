@@ -5,7 +5,6 @@
 angular.module("ndt-app", ['ui.router', 'ngAnimate', 'ui.bootstrap']);
 
 angular.module("ndt-app").run(function ($rootScope) {
-
     $rootScope.user = {};
 });
 

@@ -72,14 +72,16 @@ info.ingredient=Os ingredientes utilizados na fabricação de nossos produtos s�
 info.clients=Nossos clientes e Amigos são nossa inspiração, essa é a fórmula de sucesso e qualidade de nossos produtos. Com a sua imaginação e nossa criatividade, juntos, podemos realizar e criar coisas incriveis!
 info.tips=Veja nossas dicas de culinária.
 info.modal=Nossa seção de dicas de culinária está sendo desenvolvida, em breve você terá em mãos diversas informações que lhe ajudaram em sua cozinha. Fique atento, em alguns dias estaremos estaremos entrando em contato com os inscritos de nossa
+info.tips.culinary=Dicas de Culinária
 
 #Contact
 contact=Contato
 contact.required=Campos obrigatórios.
 email.send=E-mail enviado com sucesso
 email.send.fail=Erro ao enviar o e-mail, por favor tente novamente!
-email.subject="Email de contato"
-
+email.subject=Email de contato
+email.news.created=Email salvo com sucesso.
+email.news.error=Ocorreu ao tentar salvar email.
 
 #ERROR
 request.error=error value from request

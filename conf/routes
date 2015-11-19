@@ -51,6 +51,7 @@ DELETE        /admin/gallery/delete/:id/         controllers.GalleryControl.dele
 
 #Public Contact
 POST          /contact/send/                     controllers.ContactControl.sendContact
+POST           /contact/news/                    controllers.ContactControl.news
 
 # Map static resources from the /public folder to the /assets URL path
 GET           /assets/*file                      controllers.Assets.versioned(path="/public", file: Asset)

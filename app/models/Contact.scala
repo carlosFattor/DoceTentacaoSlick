@@ -25,6 +25,10 @@ case class Contact(id: Option[UUID],
                    data: Option[DateTime] = Option(new DateTime()),
                    sent: Option[Boolean] = Option(false)) {
 
+  //second constructor
+  def this(email: String) {
+    this(Option(java.util.UUID.randomUUID()), "Email - News Letter", email, Option(""), Option(""), "News Letter", Option(new DateTime()), Option(true))
+  }
 
   def generateEmailContact(subject: String): Seq[Email] = {
     val emailToContact = Email(
@@ -43,6 +47,7 @@ case class Contact(id: Option[UUID],
 
     Seq(emailToContact, email2Contact)
   }
+
 }
 
 object Contact {
@@ -50,6 +55,8 @@ object Contact {
   import play.api.data.Forms._
 
   implicit val format: Format[Contact] = Json.format[Contact]
+
+
 
   val formContact = Form(
     mapping(

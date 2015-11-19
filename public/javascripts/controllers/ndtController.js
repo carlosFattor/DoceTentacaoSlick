@@ -4,11 +4,28 @@
 'use strict';
 
 angular.module("ndt-app").controller("ndtController", function ($scope, listAPI) {
-    $scope.message = "";
+    var filtro = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    $scope.infoNews= "Deixe o Seu Email";
+    $scope.error;
+    $scope.msgOk;
+    $scope.msgNOK;
     $scope.app = "Nilda Doce Tentação";
     $scope.myInterval = 3000;
     $scope.noWrapSlides = false;
     $scope.slides = [];
+
+    $scope.sendNews = function(news){
+        if(filtro.test(news)){
+
+            listAPI.sendNews({email : news})
+                .success(function(data, status){
+                    $scope.msgOk = data.response;
+                })
+                .error(function(data, status){
+                    $scope.msgNOK = data.status;
+                })
+        }
+    }
 
     var myList = function () {
         listAPI.getListProductFeatured()
@@ -97,14 +114,16 @@ angular.module("ndt-app").controller("ndtGalleryControl", function($scope, listA
     funcGallery();
 });
 
-angular.module("ndt-app").controller("ndtContactControl", function($scope, listAPI){
+angular.module("ndt-app").controller("ndtContactControl", function($scope, listAPI, nameFilter){
     $scope.statusOk=false;
     $scope.statusNOK=false;
     $scope.msgFail;
     $scope.msgOk;
 
     $scope.sendContact = function(contact){
+
         if($scope.contactForm.$valid) {
+            contact.name = nameFilter(contact.name);
 
             listAPI.sendContact(angular.copy(contact))
                 .success(function (data, status) {

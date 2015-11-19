@@ -19,6 +19,8 @@ import scala.util.{Failure, Success}
  */
 class ContactControl @Inject()(emailService: EmailService, contService: ContactService, val messagesApi: MessagesApi)(implicit ec: ExecutionContext) extends Controller with I18nSupport {
 
+  val Email = """([\w\.]+)@([\w\.]+)""".r
+
   def sendContact = Action.async(parse.json) { implicit request =>
     val incomingContact = request.body.validate[Contact]
     incomingContact.fold({ error =>
@@ -34,6 +36,21 @@ class ContactControl @Inject()(emailService: EmailService, contService: ContactS
 
       Future.successful(Created(Json.toJson(SuccessResponse(messagesApi("email.send")))))
     })
+  }
+
+  def news = Action(parse.json) { implicit request =>
+    val email = request.body
+
+    Email.findFirstIn((email \ "email").as[String]) match {
+      case Some(a) => {
+        contService.addContact(new Contact(a))
+        Created(Json.toJson(SuccessResponse(messagesApi("email.news.created"))))
+      }
+      case None    => {
+        println(email)
+        BadRequest(Json.toJson(ErrorResponse(BAD_REQUEST, messagesApi("email.news.error"))))
+      }
+    }
   }
 }
 
