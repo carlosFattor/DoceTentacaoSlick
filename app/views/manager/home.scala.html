@@ -1,0 +1,70 @@
+@()(implicit request: RequestHeader, messages: Messages)
+<div class="jumbotron panel panel-default">
+
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <div class="header">
+        <div class="pull-left">
+            <p>
+                <span class="pull-left">
+                    <button type="button" class="btn btn-default btn-lg" ng-click="openAside('left', true)">
+                        <span class="glyphicon glyphicon-align-justify"></span> @messages("menu")
+                    </button>
+                </span>
+
+            </p>
+        </div>
+        <div class="inner">
+            <div class="user-ui">
+
+                <div class="user-menu-toggle">
+
+                    <div class="profile-img" style="background-image:url(http://gravatar.com/avatar/7124bc62949227ac21a52e9533e6d478?s=80)"></div>
+                    <span class="simple-arrow fa fa-chevron-up"></span>
+
+                </div>
+
+
+                    <!-- User menu -->
+                <div class="user-menu">
+
+                    <div class="user-info">
+
+                        <div class="profile-img"  style="background-image:url(http://gravatar.com/avatar/7124bc62949227ac21a52e9533e6d478?s=80)"></div>
+                        <h3 class="name">Ayhan ALTINOK</h3>
+                        <div class="ui btn normal">PROFİL</div>
+
+                    </div>
+
+                    <div class="invites-info">
+                        <span>Sonraki davet<i>40 gün</i></span>
+                        <div class="next-invite-bar">
+                            <div class="progress" style="width:70%"></div>
+
+                        </div>
+
+                        <p>Sizde 2 davetiye var</p>
+                        <div class="ui btn normal">DAVET ET</div>
+                    </div>
+
+                    <div class="menu-nav">
+                        <li><span class="fa fa-tachometer"></span>Panel</li>
+                        <li><span class="fa fa-cogs"></span>Ayarlar</li>
+                        <li><span class="fa fa-question"></span>Yardım</li>
+                        <li><span class="fa fa-power-off"></span>Çıkıs</li>
+                    </div>
+                </div>
+
+                <div class="sign-out-icon">
+                    <span class="fa fa-power-off"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="clearfix"></div>
+
+</div>

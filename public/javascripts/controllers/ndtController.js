@@ -14,6 +14,7 @@ angular.module("ndt-app").controller("ndtController", function ($scope, listAPI)
     $scope.noWrapSlides = false;
     $scope.slides = [];
 
+
     $scope.sendNews = function(news){
         if(filtro.test(news)){
 
@@ -27,11 +28,19 @@ angular.module("ndt-app").controller("ndtController", function ($scope, listAPI)
         }
     }
 
+    var getListProducts = function(name) {
+        listAPI.findListProds("prod1")
+            .success(function(data, status){
+                console.log(data)
+            })
+    }
+
     var myList = function () {
         listAPI.getListProductFeatured()
             .success(function (data, status) {
                 $scope.slides = data.response.map(function(element){
-                    return {image: element.imgSmallURL};
+                    return {image: element.imgSmallURL,
+                            text: element.name};
                 });
             })
             .error(function (data, status) {

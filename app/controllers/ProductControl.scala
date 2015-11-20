@@ -39,6 +39,14 @@ class ProductControl @Inject()(prodService: ProductService, val messagesApi: Mes
     }
   }
 
+  def getListByName(name: String) = Action.async { implicit request =>
+    println(name)
+    prodService.findProductByName(name).map {
+      case prods: Seq[models.Product] => Ok(Json.toJson(SuccessResponse(prods)))
+      case _ => BadRequest(Json.toJson(ErrorResponse(BAD_REQUEST, messagesApi("prod.fail.prod"))))
+    }
+  }
+
   def get(id: UUID) = Action.async { implicit request =>
     prodService.findProduct(id).map {
       case Some(prod) => Ok(Json.toJson(SuccessResponse(prod)))

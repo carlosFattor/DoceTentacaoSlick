@@ -34,6 +34,10 @@ angular.module("ndt-app").factory("listAPI", function($http, config){
         return $http.post(config.baseURL+"/contact/news/", email)
     }
 
+    var _findListProds = function(name){
+        return $http.get(config.baseURL+"/product/get_list/"+name+"/")
+    }
+
     return {
         getList: _getList,
         getListCategory: _getListCategory,
@@ -42,6 +46,7 @@ angular.module("ndt-app").factory("listAPI", function($http, config){
         getListProducts: _getListProducts,
         getListGallery: _getListGallery,
         sendContact: _sendContact,
-        sendNews: _sendNews
+        sendNews: _sendNews,
+        findListProds: _findListProds
     };
 });

@@ -15,10 +15,24 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
     Ok(views.html.index())
   }
 
+  def indexManager = Action {
+    Ok(views.html.manager.index())
+  }
+
   val myList = List(1 to 10)
 
   def list = Action {
     Ok(Json.toJson(myList))
+  }
+
+  def viewManager(template: String) = Action.async { implicit request =>
+    Future.successful(
+      template match {
+        case "home" => Ok(views.html.manager.home())
+        case "aside" => Ok(views.html.manager.menu.aside())
+        case _ => NotFound
+      }
+    )
   }
 
   def view(template: String) = Action.async { implicit request =>
@@ -40,7 +54,6 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
   def jsRoutes = Action { implicit request =>
     Ok(
       JavaScriptReverseRouter("jsRoutes")(
-        routes.javascript.Application.list
       )).as("text/javascript")
   }
 }

@@ -42,7 +42,7 @@ class ProductService @Inject()(productDAO: ProductDAO) {
     productDAO.delete(id)
   }
 
-  def findProductByName(email: String): Future[Option[Product]] = {
-    productDAO.findByEmail(email)
+  def findProductByName(product: String): Future[Seq[Product]] = {
+    productDAO.findListByName(product)
   }
 }

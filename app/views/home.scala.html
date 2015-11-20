@@ -15,8 +15,8 @@
 
     <div class="col-md-3 pull-left">
         <fieldset>
-            <input autocomplete="off" placeholder="News Letter" name="news"  type="email" ng-model="news"
-            data-toggle="tooltip" data-placement="bottom" title="{{infoNews}}"></input>
+            <input autocomplete="off" placeholder="News Letter" name="news" type="email" ng-model="news"
+            data-toggle="tooltip" data-placement="bottom" title="{{infoNews}}" />
             <button type="submit" name="buttonNews" class="btn btn-primary" autocomplete="off" ng-click="sendNews(news)">
                 <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
             </button>
@@ -27,33 +27,42 @@
     <div class="col-md-3 pull-right">
         <form>
             <fieldset>
-                <input autocomplete="off" placeholder="Buscar" id="search" name="search" type="text" data-toggle="tooltip" data-placement="bottom" title="Pesquise nossos produto">
-                </input>
+                <input autocomplete="off" placeholder="Buscar" id="search" name="search" type="text" data-toggle="tooltip" data-placement="bottom" title="Pesquise nossos produto" />
                 <button type="submit" id="myButton" class="btn btn-default" autocomplete="off">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 </button>
             </fieldset>
         </form>
     </div>
-
+</div>
+<div class="row">
     <div class="col-md-10">
         <h1>@messages("welcome")!</h1>
         <p>@messages("info.mission")</p>
     </div>
-
+</div>
+<div class="row">
     <div class="col-xs-9 col-sm-4 col-md-4" >
         <div id="slides_control">
-
+            <uib-carousel interval="myInterval" >
+                <uib-slide ng-repeat="slide in slides" active="slide.active">
+                    <img ng-src="{{slide.image}}">
+                    <div class="carousel-caption">
+                        <h4>Slide {{$index}}</h4>
+                        <p>{{slide.text}}</p>
+                    </div>
+                </uib-slide>
+            </uib-carousel>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-xs-9 col-sm-4 col-md-4">
         <h2>@messages("products")</h2>
         <p><img src="@routes.Assets.versioned("img/icons/cake_1.png")" style="float : left ;" class="img-rounded"/>
             @messages("info.ingredient")
         </p>
 
     </div>
-    <div class="col-md-4">
+    <div class="col-xs-9 col-sm-4 col-md-4">
         <h2>@messages("clients")</h2>
         <p><img src="@routes.Assets.versioned("img/icons/customer.png")" style="float : left ;" class="img-rounded"/>
             @messages("info.clients")
@@ -62,13 +71,13 @@
     </div>
 </div>
 <hr>
-<div class="row" style="margin-bottom: 100px;">
+<div class="row" style="margin-bottom : 100px ;">
     <div class="col-md-12">
         <h2>@messages("tips")</h2>
         <p>@messages("info.tips")</p>
         <p>
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                @messages("info.tips.culinary")
+            @messages("info.tips.culinary")
             </button>
         </p>
     </div>
