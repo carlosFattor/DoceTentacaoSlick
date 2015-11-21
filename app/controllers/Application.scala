@@ -15,7 +15,7 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
     Ok(views.html.index())
   }
 
-  def indexManager = Action {
+  def indexManager = Action { implicit request =>
     Ok(views.html.manager.index())
   }
 
@@ -28,6 +28,9 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
   def viewManager(template: String) = Action.async { implicit request =>
     Future.successful(
       template match {
+        case "index" => Ok("")
+        case "login_user" => Ok(views.html.manager.forms.login_user())
+        case "info_user" => Ok(views.html.manager.menu.info_user())
         case "home" => Ok(views.html.manager.home())
         case "aside" => Ok(views.html.manager.menu.aside())
         case _ => NotFound

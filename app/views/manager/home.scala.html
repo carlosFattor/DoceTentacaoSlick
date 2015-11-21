@@ -4,67 +4,58 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <div class="header">
-        <div class="pull-left">
-            <p>
-                <span class="pull-left">
-                    <button type="button" class="btn btn-default btn-lg" ng-click="openAside('left', true)">
-                        <span class="glyphicon glyphicon-align-justify"></span> @messages("menu")
-                    </button>
-                </span>
+    <div class="row">
 
-            </p>
-        </div>
-        <div class="inner">
-            <div class="user-ui">
+        <info-user info="infoUser">
+            <span class="pull-left" ng-if="user">
+                <button type="button" class="btn btn-primary btn-lg" ng-click="openAside('left', true)">
+                    <span class="glyphicon glyphicon-align-justify"></span> @messages("menu")
+                </button>
+            </span>
+        </info-user>
+    </div>
+</div>
+<div class="jumbotron panel panel-default">
+    <form class="form-horizontal" name="formLogin" ng-if="!user">
+        {{formLogin.$valid}}
+        <fieldset>
+                <!-- Form Name -->
+            <legend>Logar no sistema.</legend>
 
-                <div class="user-menu-toggle">
-
-                    <div class="profile-img" style="background-image:url(http://gravatar.com/avatar/7124bc62949227ac21a52e9533e6d478?s=80)"></div>
-                    <span class="simple-arrow fa fa-chevron-up"></span>
-
-                </div>
-
-
-                    <!-- User menu -->
-                <div class="user-menu">
-
-                    <div class="user-info">
-
-                        <div class="profile-img"  style="background-image:url(http://gravatar.com/avatar/7124bc62949227ac21a52e9533e6d478?s=80)"></div>
-                        <h3 class="name">Ayhan ALTINOK</h3>
-                        <div class="ui btn normal">PROFİL</div>
-
+                <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="email">Email</label>
+                <div class="col-md-4">
+                    <input id="email" name="email" ng-model="login.email" placeholder="Email" class="form-control input-md" ng-required="true" type="text">
+                    <span class="help-block">Informe o email cadastrado.</span>
+                    <div ng-show="formLogin.email.$error.required && formLogin.email.$dirty" class="alert alert-danger">
+                        <p>Por favor, preencha o seu Email.</p>
                     </div>
-
-                    <div class="invites-info">
-                        <span>Sonraki davet<i>40 gün</i></span>
-                        <div class="next-invite-bar">
-                            <div class="progress" style="width:70%"></div>
-
-                        </div>
-
-                        <p>Sizde 2 davetiye var</p>
-                        <div class="ui btn normal">DAVET ET</div>
-                    </div>
-
-                    <div class="menu-nav">
-                        <li><span class="fa fa-tachometer"></span>Panel</li>
-                        <li><span class="fa fa-cogs"></span>Ayarlar</li>
-                        <li><span class="fa fa-question"></span>Yardım</li>
-                        <li><span class="fa fa-power-off"></span>Çıkıs</li>
-                    </div>
-                </div>
-
-                <div class="sign-out-icon">
-                    <span class="fa fa-power-off"></span>
                 </div>
             </div>
-        </div>
 
-    </div>
+                <!-- Password input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Senha</label>
+                <div class="col-md-4">
+                    <input id="password" name="password" ng-model="login.password" placeholder="Senha" class="form-control input-md" ng-required="true" type="password">
+                    <span class="help-block">Informe a senha cadastrada.</span>
+                    <div ng-show="formLogin.password.$error.required && formLogin.password.$dirty" class="alert alert-danger">
+                        <p>Por favor, preencha a senha.</p>
+                    </div>
+                </div>
+            </div>
 
+                <!-- Button (Double) -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="btnLogin"></label>
+                <div class="col-md-8">
+                    <button id="btnLogin" name="btnLogin" class="btn btn-success" ng-click="logarUser(login)">Logar</button>
+                    <button id="btnCancel" name="btnCancel" class="btn btn-danger">Cancelar</button>
+                </div>
+            </div>
 
-    <div class="clearfix"></div>
+        </fieldset>
+    </form>
 
 </div>

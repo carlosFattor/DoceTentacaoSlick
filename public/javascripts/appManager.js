@@ -2,13 +2,14 @@
  * Created by carlos on 15/10/15.
  */
 'use strict';
-angular.module("ndtM-app", ['ui.router']);
+angular.module("ndtM-app", []);
 
 angular.module('ndtM-app').run(function ($rootScope) {
-    $rootScope.user = {};
+    $rootScope.user;
 });
 
-angular.module('ndtM-app', ['ui.router', 'ui.bootstrap', 'ngAside']).config(function ($stateProvider, $urlRouterProvider) {
+angular.module('ndtM-app', ['ui.router', 'ui.bootstrap', 'ngAside', 'uiInfoUser']).config(function ($stateProvider, $urlRouterProvider) {
+
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise("/");
 

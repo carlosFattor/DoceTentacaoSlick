@@ -16,9 +16,9 @@
         </div>
 
         <p class="email">
-            <input type="email" name="email" ng-model="contact.email" placeholder="@messages("email")" ng-required="true" ng-minlength="7">*
+            <input type="email" name="email" ng-model="contact.email" placeholder="@messages("email")" ng-required="true" >*
         </p>
-        <div ng-show="contactForm.email.$invalid && contactForm.email.$error.minlength && contactForm.email.$dirty" class="alert alert-danger">
+        <div ng-show="contactForm.email.$invalid && contactForm.email.$dirty" class="alert alert-danger">
             <p>Por favor, preencha o seu e-mail corretamente.</p>
         </div>
 
@@ -37,13 +37,12 @@
         </p>
 
         <div class="frmRequired"><h6> * @messages("contact.required")</h6></div>
-
-    </form>
-    {{contact}}
     {{contactForm.$valid}}
-    <p class="submit">
-        <input type="submit" value="@messages("send")" ng-click="sendContact(contact)" ng-disabled="contactForm.$invalid"/>
-    </p>
+        {{contactForm}}
+        <p class="submit">
+            <input type="submit" value="@messages("send")" ng-click="sendContact(contact)"/>
+        </p>
+    </form>
 </div>
 <div class="col-md-6 hidden-xs">
     <aside>
