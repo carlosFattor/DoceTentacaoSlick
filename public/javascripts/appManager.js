@@ -17,7 +17,7 @@ angular.module('ndtM-app', ['ui.router', 'ui.bootstrap', 'ngAside', 'uiInfoUser'
     $stateProvider
         .state('/home/', {
             url: '/',
-            templateUrl: '/manager/views/home.html',
+            templateUrl: '/admin/views/home.html',
             controller: 'ndtControllerManager'
         })
 

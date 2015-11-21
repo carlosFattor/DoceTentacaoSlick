@@ -3,59 +3,59 @@
 # ~~~~
 
 # Dynamic part of the url
-GET           /views/$template<.+>.html                        controllers.Application.view(template)
-GET           /manager/views/$template<.+>.html        controllers.Application.viewManager(template)
+GET           /views/$template<.+>.html              controllers.Application.view(template)
+GET           /admin/views/$template<.+>.html        controllers.Application.viewManager(template)
 
 # Home page
-GET           /                                                controllers.Application.index
+GET           /                                      controllers.Application.index
 
 # Home page manager
-GET           /manager/                                        controllers.Application.indexManager
+GET           /admin/                                controllers.Application.indexManager
 
 #Manager User
-POST          /admin/user/new/                                 controllers.UserControl.add
-POST          /admin/user/                                     controllers.UserControl.login
-PUT           /admin/user/update/                              controllers.UserControl.update
-GET           /admin/user/list/                                controllers.UserControl.users
-GET           /admin/user/edit/:id/                            controllers.UserControl.edit(id: java.util.UUID)
+POST          /admin/user/                           controllers.UserControl.login
+POST          /admin/user/new/                       controllers.UserControl.add
+PUT           /admin/user/update/                    controllers.UserControl.update
+GET           /admin/user/list/                      controllers.UserControl.users
+GET           /admin/user/edit/:id/                  controllers.UserControl.edit(id: java.util.UUID)
 
 #Public Category
-GET           /category/list/                                  controllers.CategoryControl.list
+GET           /category/list/                        controllers.CategoryControl.list
 
 #Manager Category
-POST          /admin/category/new/                             controllers.CategoryControl.add
-PUT           /admin/category/update/                          controllers.CategoryControl.update
-GET           /admin/category/list/                            controllers.CategoryControl.list
-GET           /admin/category/edit/:id/                        controllers.CategoryControl.edit(id: java.util.UUID)
-DELETE        /admin/category/delete/:id/                      controllers.CategoryControl.delete(id: java.util.UUID)
+POST          /admin/category/new/                   controllers.CategoryControl.add
+PUT           /admin/category/update/                controllers.CategoryControl.update
+GET           /admin/category/list/                  controllers.CategoryControl.list
+GET           /admin/category/edit/:id/              controllers.CategoryControl.edit(id: java.util.UUID)
+DELETE        /admin/category/delete/:id/            controllers.CategoryControl.delete(id: java.util.UUID)
 
 #Public Product
-GET           /product/list/                                   controllers.ProductControl.list
-GET           /product/list_featured/                          controllers.ProductControl.listFeatured
-GET           /product/list_products/:id/                      controllers.ProductControl.getList(id: java.util.UUID)
-GET           /product/get/:id/                                controllers.ProductControl.get(id: java.util.UUID)
-GET           /product/get_list/:name/                         controllers.ProductControl.getListByName(name: String)
+GET           /product/list/                         controllers.ProductControl.list
+GET           /product/list_featured/                controllers.ProductControl.listFeatured
+GET           /product/list_products/:id/            controllers.ProductControl.getList(id: java.util.UUID)
+GET           /product/get/:id/                      controllers.ProductControl.get(id: java.util.UUID)
+GET           /product/get_list/:name/               controllers.ProductControl.getListByName(name: String)
 
 #Manager Product
-POST          /admin/product/new/                              controllers.ProductControl.add
-PUT           /admin/product/update/                           controllers.ProductControl.update
-GET           /admin/product/list/                             controllers.ProductControl.list
-GET           /admin/product/edit/:id/                         controllers.ProductControl.edit(id: java.util.UUID)
-DELETE        /admin/product/delete/:id/                       controllers.ProductControl.delete(id: java.util.UUID)
+POST          /admin/product/new/                    controllers.ProductControl.add
+PUT           /admin/product/update/                 controllers.ProductControl.update
+GET           /admin/product/list/                   controllers.ProductControl.list
+GET           /admin/product/edit/:id/               controllers.ProductControl.edit(id: java.util.UUID)
+DELETE        /admin/product/delete/:id/             controllers.ProductControl.delete(id: java.util.UUID)
 
 #Public Gallery
-GET           /gallery/list/                                   controllers.GalleryControl.list
+GET           /gallery/list/                         controllers.GalleryControl.list
 
 #Manager Gallery
-POST          /admin/gallery/new/                              controllers.GalleryControl.add
-PUT           /admin/gallery/new/                              controllers.GalleryControl.update
-GET           /admin/gallery/list/                             controllers.GalleryControl.list
-GET           /admin/gallery/edit/:id/                         controllers.GalleryControl.edit(id: java.util.UUID)
-DELETE        /admin/gallery/delete/:id/                       controllers.GalleryControl.delete(id: java.util.UUID)
+POST          /admin/gallery/new/                    controllers.GalleryControl.add
+PUT           /admin/gallery/new/                    controllers.GalleryControl.update
+GET           /admin/gallery/list/                   controllers.GalleryControl.list
+GET           /admin/gallery/edit/:id/               controllers.GalleryControl.edit(id: java.util.UUID)
+DELETE        /admin/gallery/delete/:id/             controllers.GalleryControl.delete(id: java.util.UUID)
 
 #Public Contact
-POST          /contact/send/                                   controllers.ContactControl.sendContact
-POST          /contact/news/                                   controllers.ContactControl.news
+POST          /contact/send/                         controllers.ContactControl.sendContact
+POST          /contact/news/                         controllers.ContactControl.news
 
 # Map static resources from the /public folder to the /assets URL path
-GET           /assets/*file                                    controllers.Assets.versioned(path="/public", file: Asset)
+GET           /assets/*file                          controllers.Assets.versioned(path="/public", file: Asset)

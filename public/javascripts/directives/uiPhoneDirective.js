@@ -25,7 +25,7 @@ angular.module("ndt-app").directive("uiPhone", function () {
             });
 
             ctrl.$parsers.push(function (value) {
-                if (value.length === 14 || value.length === 15) {
+                if (value.length === 14 || value.length === 16) {
                     return value;
                 }
             });

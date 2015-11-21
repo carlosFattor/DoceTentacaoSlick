@@ -9,7 +9,6 @@ import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
 import utils.Responses.{ErrorResponse, SuccessResponse}
-
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
 
@@ -47,7 +46,6 @@ class ContactControl @Inject()(emailService: EmailService, contService: ContactS
         Created(Json.toJson(SuccessResponse(messagesApi("email.news.created"))))
       }
       case None    => {
-        println(email)
         BadRequest(Json.toJson(ErrorResponse(BAD_REQUEST, messagesApi("email.news.error"))))
       }
     }

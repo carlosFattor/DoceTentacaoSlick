@@ -2,8 +2,8 @@
  * Created by carlos on 15/10/15.
  */
 'use strict';
-angular.module("ndtM-app").controller("ndtControllerManager", function ($scope, $aside, $rootScope) {
-
+angular.module("ndtM-app").controller("ndtControllerManager", function ($scope, $aside, listAPIManager, $rootScope) {
+    $scope.frmLogin = {};
     $scope.infoUser;
     /* {
         url: '/manager/views/info_user.html',
@@ -17,9 +17,16 @@ angular.module("ndtM-app").controller("ndtControllerManager", function ($scope, 
         ]
     }*/
 
-    $scope.logarUser = function(user) {
-        if($scope.formLogin.$valid){
-            console.log(user)
+    $scope.logUser = function(objUser) {
+
+        if($scope.frmLogin.$valid){
+            listAPIManager.getUser(angular.copy(objUser))
+                .success(function(data, status){
+                    console.log(data.response);
+                })
+                .error(function(data, status){
+                    console.log(status);
+                })
         };
     };
 

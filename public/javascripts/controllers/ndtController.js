@@ -124,6 +124,7 @@ angular.module("ndt-app").controller("ndtGalleryControl", function($scope, listA
 });
 
 angular.module("ndt-app").controller("ndtContactControl", function($scope, listAPI, nameFilter){
+    $scope.frmContact = {};
     $scope.statusOk=false;
     $scope.statusNOK=false;
     $scope.msgFail;
@@ -131,13 +132,13 @@ angular.module("ndt-app").controller("ndtContactControl", function($scope, listA
 
     $scope.sendContact = function(contact){
 
-        if($scope.contactForm.$valid) {
+        if($scope.frmContact.$valid) {
             contact.name = nameFilter(contact.name);
 
             listAPI.sendContact(angular.copy(contact))
                 .success(function (data, status) {
                     delete $scope.contact;
-                    $scope.contactForm.$setPristine();
+                    $scope.frmContact.$setPristine();
                     $scope.msgOk = data.response;
                     $scope.statusNOk = false;
                     $scope.statusOk = true;
@@ -148,6 +149,8 @@ angular.module("ndt-app").controller("ndtContactControl", function($scope, listA
                     $scope.statusOk = false;
                     $scope.statusNOk = true;
                 })
+        }else{
+            console.log($scope.frmContact);
         }
 
     }

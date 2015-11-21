@@ -43,7 +43,7 @@ class UserService @Inject()(userDAO: UserDAO) {
 
   def validateUser(email: String, password: String): Future[Option[User]] = {
     userDAO.findByEmail(email).map { user =>
-      user.filter(u => u.email.equalsIgnoreCase(Base64.encodeString(password)))
+      user.filter(u => u.password == (Base64.encodeString(password)))
     }
   }
 

@@ -2,23 +2,25 @@
 <div class="col-xs-9 col-sm-6 col-md-6" style="margin-bottom : 100px;">
     <div class="alert alert-danger" role="alert" ng-bind="msgFail" ng-show="statusNOk"></div>
     <div class="alert alert-success" role="alert" ng-bind="msgOk" ng-show="statusOk"></div>
+
     <h2>@messages("contact")</h2>
-    <form name="contactForm" class="form">
+
+    <form name="frmContact">
         <p class="name">
-            <input type="text" name="name" ng-model="contact.name" placeholder="@messages("name")" ng-required="true" ng-minlength="3"/>*
+            <input type="text" name="name" ng-model="contact.name" placeholder="@messages("name")" ng-required="true"/>*
         </p>
-        <div ng-show="contactForm.name.$error.required && contactForm.name.$dirty" class="alert alert-danger">
+        <div ng-show="frmContact.name.$error.required && frmContact.name.$dirty" class="alert alert-danger">
             <p>Por favor, preencha o seu nome.</p>
         </div>
 
-        <div ng-show="contactForm.name.$error.minlength" class="alert alert-danger">
+        <div ng-show="frmContact.name.$error.minlength" class="alert alert-danger">
             <p>O campo nome deve conter no mínimo 3 caractéres.</p>
         </div>
 
         <p class="email">
             <input type="email" name="email" ng-model="contact.email" placeholder="@messages("email")" ng-required="true" >*
         </p>
-        <div ng-show="contactForm.email.$invalid && contactForm.email.$dirty" class="alert alert-danger">
+        <div ng-show="frmContact.email.$invalid && frmContact.email.$dirty" class="alert alert-danger">
             <p>Por favor, preencha o seu e-mail corretamente.</p>
         </div>
 
@@ -33,12 +35,13 @@
         <p class="text">
             <textarea rows="5" cols="20" name="textEmail" ng-model="contact.textEmail" ng-required="true"></textarea>
             <br />*
-            <span style="color: red;" ng-show="contactForm.contact.textEmail.$invalid"></span>
+            <span style="color: red;" ng-show="frmContact.textEmail.$invalid"></span>
         </p>
 
         <div class="frmRequired"><h6> * @messages("contact.required")</h6></div>
-    {{contactForm.$valid}}
-        {{contactForm}}
+    {{frmContact.$valid}}
+
+        {{contact}}
         <p class="submit">
             <input type="submit" value="@messages("send")" ng-click="sendContact(contact)"/>
         </p>

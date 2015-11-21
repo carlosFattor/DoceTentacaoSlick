@@ -8,7 +8,7 @@ angular.module("uiInfoUser").directive('infoUser', function(){
     return {
         replace: true,
         restrict: 'E',
-        templateUrl: '/manager/views/info_user.html',
+        templateUrl: '/admin/views/info_user.html',
         scope: {
             info: "="
         },
