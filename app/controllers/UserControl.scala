@@ -40,7 +40,7 @@ class UserControl @Inject()(userService: UserService, val messagesApi: MessagesA
     Ok("").withNewSession
   }
 
-  def add = Action.async { implicit request =>
+  def add = Authenticated.async { implicit request =>
     val incomingUser = User.formUser.bindFromRequest()
 
     incomingUser.fold(error => {
@@ -63,14 +63,14 @@ class UserControl @Inject()(userService: UserService, val messagesApi: MessagesA
     }
   }
 
-  def edit(userID: UUID) = Action.async { implicit request =>
+  def edit(userID: UUID) = Authenticated.async { implicit request =>
     userService.findUser(userID).map {
       case Some(user) => Ok(Json.toJson(SuccessResponse(user)))
       case None => NotFound(Json.toJson(ErrorResponse(NOT_FOUND, messagesApi("user.not.found"))))
     }
   }
 
-  def update = Action.async { implicit request =>
+  def update = Authenticated.async { implicit request =>
     val incomingUser = User.formUser.bindFromRequest()
 
     incomingUser.fold(error => {
@@ -87,7 +87,7 @@ class UserControl @Inject()(userService: UserService, val messagesApi: MessagesA
     })
   }
 
-  def delete(id: UUID) = Action.async { request =>
+  def delete(id: UUID) = Authenticated.async { request =>
 
     userService.deleteUser(id).map{ resp =>
       if(resp == 1){

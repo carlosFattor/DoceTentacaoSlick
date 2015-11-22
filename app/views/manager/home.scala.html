@@ -16,6 +16,8 @@
     </div>
 </div>
 <div class="jumbotron panel panel-default">
+    <div class="alert alert-danger" role="alert" ng-bind="msgFail" ng-if="msgFail"></div>
+    <div class="alert alert-success" role="alert" ng-bind="msgSuccess" ng-if="msgSuccess"></div>
     <div >
     <form class="form-horizontal" name="frmLogin">
         {{frmLogin.$valid}}

@@ -2,13 +2,17 @@
  * Created by carlos on 19/11/15.
  */
 'use strict';
-angular.module('ndtM-app').factory('listAPIManager', function ($http, configM) {
+angular.module('ndtM-app').factory('listAPIManager', function ($http) {
 
-    var _getUser = function (user) {
-        $http.post(configM.baseURLM + "/admin/user/", user);
+    var factory = {};
+
+    factory.getUserValue = function(credentials) {
+        return $http({
+            method: 'post',
+            url: '/admin/user/',
+            data: credentials
+        });
     };
 
-    return {
-        getUser: _getUser
-    };
+    return factory;
 });

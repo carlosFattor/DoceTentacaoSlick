@@ -1,4 +1,5 @@
 package security
+
 /**
  * Created by carlos on 16/10/15.
  */
@@ -19,7 +20,7 @@ object UserAction extends ActionBuilder[UserRequest] with ActionTransformer[Requ
   }
 }
 
-object Authenticated extends ActionBuilder[AuthenticatedRequest] with Controller{
+object Authenticated extends ActionBuilder[AuthenticatedRequest] with Controller {
   def invokeBlock[A](request: Request[A], block: (AuthenticatedRequest[A]) => Future[Result]) = {
     request.session.get("email").map { email =>
       block(new AuthenticatedRequest(email, request))

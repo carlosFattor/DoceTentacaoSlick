@@ -2,9 +2,14 @@
  * Created by carlos on 15/10/15.
  */
 'use strict';
-angular.module("ndtM-app").controller("ndtControllerManager", function ($scope, $aside, listAPIManager, $rootScope) {
+angular.module("ndtM-app").controller("ndtControllerManager", function ($rootScope, $scope, $aside, listAPIManager) {
+
     $scope.frmLogin = {};
     $scope.infoUser;
+
+    $scope.msgSuccess;
+    $scope.msgFail;
+
     /* {
         url: '/manager/views/info_user.html',
         name: 'Carlos Alexandre Fattor',
@@ -20,12 +25,21 @@ angular.module("ndtM-app").controller("ndtControllerManager", function ($scope, 
     $scope.logUser = function(objUser) {
 
         if($scope.frmLogin.$valid){
-            listAPIManager.getUser(angular.copy(objUser))
+
+            listAPIManager.getUserValue(angular.copy(objUser))
                 .success(function(data, status){
+                    $scope.msgFail = false;
+                    $scope.msgSuccess = data;
                     console.log(data.response);
                 })
                 .error(function(data, status){
-                    console.log(status);
+                    $scope.msgSuccess = false;
+
+                    if(status === 403){
+                        $scope.msgFail = "Permissão de acesso negada.";
+                    } else if(status === 404){
+                        $scope.msgFail = "Usuário não encontrado.";
+                    }
                 })
         };
     };
@@ -33,8 +47,6 @@ angular.module("ndtM-app").controller("ndtControllerManager", function ($scope, 
     $scope.asideState = {
         open: false
     };
-
-
     $scope.openAside = function (position, backdrop) {
         $scope.asideState = {
             open: true,

@@ -2,7 +2,7 @@
  * Created by carlos on 15/10/15.
  */
 'use strict';
-angular.module("ndt-app", ['ui.router']);
+angular.module("ndt-app", []);
 
 angular.module("ndt-app").run(function ($rootScope) {
     $rootScope.user = {};
