@@ -33,6 +33,7 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
         case "info_user" => Ok(views.html.manager.menu.info_user())
         case "home" => Ok(views.html.manager.home())
         case "aside" => Ok(views.html.manager.menu.aside())
+        case "info_home" => Ok(views.html.manager.infos.info_home())
         case _ => NotFound
       }
     )

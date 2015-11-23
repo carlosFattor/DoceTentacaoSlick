@@ -1,6 +1,47 @@
 @()
-<div class="jumbotron panel panel-default">
+<div >
+    <div class="alert alert-danger" role="alert" ng-bind="msgFail" ng-if="msgFail"></div>
+    <div class="alert alert-success" role="alert" ng-bind="msgSuccess" ng-if="msgSuccess"></div>
 
-    <p>Login</p>
+    <form class="form-horizontal" name="scope.frmLogin">
+        <fieldset>
+                <!-- Form Name -->
+            <legend>Logar no sistema.</legend>
 
+                <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="email">Email</label>
+                <div class="col-md-4">
+                    <input id="email" name="email" ng-model="login.email" placeholder="Email" class="form-control input-md" ng-required="true" type="email">
+                    <span class="help-block">Informe o email cadastrado.</span>
+                    <div ng-show="frmLogin.email.$error.required && frmLogin.email.$dirty" class="alert alert-danger">
+                        <p>Por favor, preencha o seu Email.</p>
+                    </div>
+                </div>
+            </div>
+
+                <!-- Password input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Senha</label>
+                <div class="col-md-4">
+                    <input id="password" name="password" ng-model="login.password" placeholder="Senha" class="form-control input-md" ng-required="true" type="password">
+                    <span class="help-block">Informe a senha cadastrada.</span>
+                    <div ng-show="frmLogin.password.$error.required && frmLogin.password.$dirty" class="alert alert-danger">
+                        <p>Por favor, preencha a senha.</p>
+                    </div>
+                </div>
+            </div>
+
+                <!-- Button (Double) -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="btnLogin"></label>
+                <div class="col-md-8">
+                    <button id="btnLogin" name="btnLogin" class="btn btn-success" ng-click="logUser(login)">Logar</button>
+                    <button id="btnCancel" name="btnCancel" class="btn btn-danger" ng-click="cancelUser()">Cancelar</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
 </div>
+

@@ -37,7 +37,7 @@ class UserControl @Inject()(userService: UserService, val messagesApi: MessagesA
   }
 
   def logout = Action {
-    Ok("").withNewSession
+    Ok(Json.toJson(SuccessResponse(OK))).withNewSession
   }
 
   def add = Authenticated.async { implicit request =>

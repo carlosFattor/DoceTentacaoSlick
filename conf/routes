@@ -14,6 +14,7 @@ GET           /admin/                                controllers.Application.ind
 
 #Manager User
 POST          /admin/user/                           controllers.UserControl.login
+POST          /admin/user/logout/                    controllers.UserControl.logout
 POST          /admin/user/new/                       controllers.UserControl.add
 PUT           /admin/user/update/                    controllers.UserControl.update
 GET           /admin/user/list/                      controllers.UserControl.users
