@@ -87,9 +87,9 @@ class UserControl @Inject()(userService: UserService, val messagesApi: MessagesA
     })
   }
 
-  def delete(id: UUID) = Authenticated.async { request =>
-
-    userService.deleteUser(id).map{ resp =>
+  def delete = Authenticated.async(parse.tolerantText) { request =>
+    val incomingIdUser = request.body
+    userService.deleteUser(UUID.fromString(incomingIdUser)).map{ resp =>
       if(resp == 1){
         Ok(Json.toJson(SuccessResponse(resp)))
       } else {

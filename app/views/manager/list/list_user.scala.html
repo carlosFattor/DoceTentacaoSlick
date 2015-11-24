@@ -1,11 +1,10 @@
 @()(implicit request: RequestHeader, messages: Messages)
-
 <link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="jumbotron panel panel-default">
     <div class="row">
         <info-user info="infoUser">
-            <span class="pull-left" ng-if="user">
+            <span class="pull-left">
                 <button type="button" class="btn btn-primary btn-lg" ng-click="openAside('left', true)">
                     <span class="glyphicon glyphicon-align-justify"></span> @messages("menu")
                 </button>
@@ -13,7 +12,6 @@
         </info-user>
     </div>
 </div>
-
 <div class="jumbotron panel panel-default">
     <h3 class="title text-center">Usuários Cadastrados.</h3>
     <hr />
@@ -27,7 +25,7 @@
             <th>Excluir</th>
             <tr ng-repeat="user in users">
                 <td class="">
-                    <img ng-src="{{user.avatarURL}}" class="profile-img img img-circle" style="width: 50px;"/>
+                    <img ng-src="{{user.avatarURL || '@routes.Assets.versioned("img/icons/user_off.png")'}}" class="profile-img img img-circle" style="width: 50px;"/>
                 </td>
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
@@ -37,6 +35,11 @@
             </tr>
         </table>
     </div>
+    <hr/>
+    <div>
+        <button type="button" class="btn btn-primary" ng-click="create()">Criar usuário.</button>
+    </div>
+
 
 </div>
 <div>

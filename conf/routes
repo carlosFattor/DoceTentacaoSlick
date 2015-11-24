@@ -16,6 +16,7 @@ GET           /admin/                                controllers.Application.ind
 POST          /admin/users/login/                    controllers.UserControl.login
 POST          /admin/users/logout/                   controllers.UserControl.logout
 POST          /admin/users/new/                      controllers.UserControl.add
+DELETE        /admin/users/delete/                   controllers.UserControl.delete
 PUT           /admin/users/update/                   controllers.UserControl.update
 GET           /admin/users/                          controllers.UserControl.users
 GET           /admin/users/edit/:id/                 controllers.UserControl.edit(id: java.util.UUID)

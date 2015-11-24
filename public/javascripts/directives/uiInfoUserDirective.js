@@ -17,6 +17,18 @@ angular.module("uiInfoUser").directive('infoUser', function(){
             scope.menu_open = function(open){
                 scope.isOpen = !open;
             }
+            $(document).bind('click', function(event){
+                var isClickedElementChildOfPopup = element
+                        .find(event.target)
+                        .length > 0;
+
+                if (isClickedElementChildOfPopup)
+                    return;
+
+                scope.$apply(function(){
+                    scope.isOpen = false;
+                });
+            });
         },
         transclude: true
     };

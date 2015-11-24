@@ -8,8 +8,9 @@ angular.module('ndtM-app').controller('ndtUsersController', function($rootScope,
     var users = function(){
         listAPIManager.getUsers()
             .success(function(data, status){
-                $scope.users = data.response;
-                console.log($scope.users);
+                $scope.users = data.response.filter(function(user){
+                    return delete user.password;
+                });
             })
             .error(function(data, status){
                 console.log(status);
@@ -27,7 +28,40 @@ angular.module('ndtM-app').controller('ndtUsersController', function($rootScope,
         };
 
         uiConfirmation.showModal({}, modalOptions).then(function (result) {
-            console.log("apagar arquivo!");
+
+            listAPIManager.deleteUsers(user.id)
+                .success(function(data, status){
+                    users();
+                })
+                .error(function(data, status){
+                    console.log(status);
+                });
+        });
+    }
+
+    $scope.create = function(){
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'myModalContent.html',
+            controller: 'ModalInstanceCtrl',
+            size: 'lg',
+            resolve: {
+                userToOpen: function(){
+                    return newUser = {};
+                }
+            }
+        });
+        modalInstance.result.then(function(newUser){
+
+            listAPIManager.createUser(newUser)
+                .success(function(data, status){
+                    users();
+                })
+                .error(function(data, status){
+                    console.log(status);
+                })
+        }, function(){
+            $log.info('Modal dismissed at: '+ new Date());
         });
     }
 
@@ -39,15 +73,22 @@ angular.module('ndtM-app').controller('ndtUsersController', function($rootScope,
             controller: 'ModalInstanceCtrl',
             size: 'lg',
             resolve: {
-                user: function(){
+                userToOpen: function(){
                     return user;
                 }
             }
         });
 
-        modalInstance.result.then(function(selectedItem){
-            console.log(selectedItem);
-            $scope.selected = selectedItem;
+        modalInstance.result.then(function(userSelected){
+            listAPIManager.updateUser(userSelected)
+                .success(function(data, status){
+                    users();
+                })
+                .error(function(data, status){
+                    console.log(status);
+                })
+
+            $scope.selected = userSelected;
         }, function(){
             $log.info('Modal dismissed at: '+ new Date());
         });
@@ -57,8 +98,8 @@ angular.module('ndtM-app').controller('ndtUsersController', function($rootScope,
     };
 });
 
-angular.module('ndtM-app').controller('ModalInstanceCtrl', function($scope, $uibModalInstance, user){
-    $scope.userToEdit = user;
+angular.module('ndtM-app').controller('ModalInstanceCtrl', function($scope, $uibModalInstance, userToOpen){
+    $scope.userToEdit = userToOpen;
 
     $scope.ok = function () {
         $uibModalInstance.close($scope.userToEdit);

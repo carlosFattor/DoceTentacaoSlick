@@ -2,6 +2,7 @@ package models.Services
 
 import java.util.UUID
 import javax.inject.Inject
+import akka.actor.Status.Success
 import models.DAOs.{ProductDAO, UserDAO}
 import models.User
 import utils.Base64
@@ -20,8 +21,8 @@ class UserService @Inject()(userDAO: UserDAO) {
   def addUser(user: User): Future[Option[User]] = {
     val newUser = user.copy(password = Base64.encodeString(user.password))
     userDAO.insert(newUser).map { uuid =>
-      val newUser = user.copy(id = Option(uuid))
-      Option(newUser)
+      val finishedUser = newUser.copy(id = Option(uuid))
+      Option(finishedUser)
     }
   }
 
@@ -30,7 +31,8 @@ class UserService @Inject()(userDAO: UserDAO) {
   }
 
   def updateUSer(user: User): Future[Int] = {
-    userDAO.update(user.id.get, user)
+    val newUser = user.copy(password = Base64.encodeString(user.password))
+    userDAO.update(user.id.get, newUser)
   }
 
   def removeUser(id: UUID): Future[Int] = {

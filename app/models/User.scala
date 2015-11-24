@@ -15,8 +15,8 @@ case class User(id: Option[UUID],
                 name: String,
                 email: String,
                 password: String,
-                avatarURL: String,
-                desc: String = "")
+                avatarURL: Option[String],
+                desc: Option[String])
 
 object User {
 
@@ -30,8 +30,8 @@ object User {
       "name" -> nonEmptyText,
       "email" -> email,
       "password" -> nonEmptyText(minLength = 3),
-      "avatarURL" -> nonEmptyText,
-      "desc" -> text
+      "avatarURL" -> optional(text),
+      "desc" -> optional(text)
     )(User.apply)(User.unapply))
 
   protected val dbConfig = DatabaseConfigProvider.get[JdbcProfile](Play.current)
@@ -51,7 +51,7 @@ object User {
 
     def desc = column[String]("desc")
 
-    def * = (id.?, name, email, password, avatarURL, desc) <>
+    def * = (id.?, name, email, password, avatarURL.?, desc.?) <>
       ((User.apply _).tupled, User.unapply)
   }
 

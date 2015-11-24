@@ -1,20 +1,19 @@
 @()
 <div class="ui-info-user">
-    <div ng-transclude>
-    </div>
+    <div ng-transclude></div>
     <div class="header" >
         <div class="inner">
             <div class="user-ui" >
 
                 <a class="user-menu-toggle" ng-click="menu_open(isOpen)">
-                    <img class="profile-img img img-circle" ng-src="{{info.avatar}}" />
+                    <img class="profile-img img img-circle" ng-src="{{info.avatar || '@routes.Assets.versioned("img/icons/user_off.png")'}}" />
                     <span class="simple-arrow fa fa-chevron-up"></span>
                 </a>
 
                     <!-- User menu -->
                 <div class="user-menu" ng-if="isOpen && info">
                     <div class="user-info">
-                        <img class="profile-img img img-circle" ng-src="{{info.avatar}}" />
+                        <img class="profile-img img img-circle" ng-src="{{info.avatar || '@routes.Assets.versioned("img/icons/user_off.png")'}}" />
                         <h3 class="name">{{info.name}}</h3>
                     </div>
 

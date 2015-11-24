@@ -17,14 +17,12 @@ angular.module('uiLoginUser').directive('loginUser', function($rootScope, listAP
             ]
         }
         $rootScope.user = user;
-
         $cookieStore.put("user", $rootScope.user);
         $cookieStore.put("infoUser", $rootScope.infoUser);
     }
 
     var readeCookie = function(){
         var userCookie = $cookieStore.get("user");
-        console.log(userCookie);
         if(userCookie != null){
             generateInfoUser(userCookie);
         }
@@ -33,16 +31,13 @@ angular.module('uiLoginUser').directive('loginUser', function($rootScope, listAP
         replace: true,
         restrict: 'E',
         templateUrl: '/admin/views/login_user.html',
-        scope: {
 
-        },
         link: function(scope, element, attrs){
             scope.frmLogin = {};
             scope.msgSuccess;
             scope.msgFail;
-
+            console.log("lendo cookie")
             readeCookie();
-
             scope.cancelUser = function(){
                 delete $rootScope.user;
                 scope.frmLogin = {};
@@ -60,6 +55,8 @@ angular.module('uiLoginUser').directive('loginUser', function($rootScope, listAP
                             scope.msgFail = "Permissão de acesso negada.";
                         } else if(status === 404){
                             scope.msgFail = "Usuário não encontrado.";
+                        } else if( status === 400){
+                            scope.msgFail = "Erro na requisição.";
                         }
                     })
             };
