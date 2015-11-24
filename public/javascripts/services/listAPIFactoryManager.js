@@ -6,12 +6,18 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http) {
 
     var factory = {};
 
-    factory.getUserValue = function(credentials) {
+    factory.loginUser = function(credentials) {
         return $http({
             method: 'post',
-            url: '/admin/user/',
+            url: '/admin/users/login/',
             data: credentials
         });
+    };
+    factory.getUsers = function(){
+        return $http({
+            method: 'get',
+            url: '/admin/users/'
+        })
     };
 
     return factory;

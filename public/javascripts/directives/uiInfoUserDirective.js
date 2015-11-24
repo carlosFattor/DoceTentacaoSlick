@@ -1,7 +1,7 @@
-'use strict';
 /**
  * Created by carlos on 19/11/15.
  */
+'use strict';
 angular.module("uiInfoUser", []);
 angular.module("uiInfoUser").directive('infoUser', function(){
 

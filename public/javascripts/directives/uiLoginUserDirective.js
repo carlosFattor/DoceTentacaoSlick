@@ -41,7 +41,6 @@ angular.module('uiLoginUser').directive('loginUser', function($rootScope, listAP
             scope.msgSuccess;
             scope.msgFail;
 
-            console.log("teste")
             readeCookie();
 
             scope.cancelUser = function(){
@@ -49,8 +48,7 @@ angular.module('uiLoginUser').directive('loginUser', function($rootScope, listAP
                 scope.frmLogin = {};
             }
             scope.logUser = function(objUser) {
-
-                listAPIManager.getUserValue(angular.copy(objUser))
+                listAPIManager.loginUser(angular.copy(objUser))
                     .success(function(data, status){
                         scope.msgFail = false;
                         generateInfoUser(data.response);

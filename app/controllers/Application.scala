@@ -29,11 +29,14 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
     Future.successful(
       template match {
         case "index" => Ok("")
-        case "login_user" => Ok(views.html.manager.forms.login_user())
-        case "info_user" => Ok(views.html.manager.menu.info_user())
         case "home" => Ok(views.html.manager.home())
+        case "menu" => Ok(views.html.manager.menu.menu())
         case "aside" => Ok(views.html.manager.menu.aside())
+        case "list_user" => Ok(views.html.manager.list.list_user())
+        case "info_user" => Ok(views.html.manager.menu.info_user())
         case "info_home" => Ok(views.html.manager.infos.info_home())
+        case "login_user" => Ok(views.html.manager.forms.login_user())
+        case "confirmation_modal" => Ok(views.html.alerts.ui_confirmation_modal())
         case _ => NotFound
       }
     )

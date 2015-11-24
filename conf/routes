@@ -13,12 +13,12 @@ GET           /                                      controllers.Application.ind
 GET           /admin/                                controllers.Application.indexManager
 
 #Manager User
-POST          /admin/user/                           controllers.UserControl.login
-POST          /admin/user/logout/                    controllers.UserControl.logout
-POST          /admin/user/new/                       controllers.UserControl.add
-PUT           /admin/user/update/                    controllers.UserControl.update
-GET           /admin/user/list/                      controllers.UserControl.users
-GET           /admin/user/edit/:id/                  controllers.UserControl.edit(id: java.util.UUID)
+POST          /admin/users/login/                    controllers.UserControl.login
+POST          /admin/users/logout/                   controllers.UserControl.logout
+POST          /admin/users/new/                      controllers.UserControl.add
+PUT           /admin/users/update/                   controllers.UserControl.update
+GET           /admin/users/                          controllers.UserControl.users
+GET           /admin/users/edit/:id/                 controllers.UserControl.edit(id: java.util.UUID)
 
 #Public Category
 GET           /category/list/                        controllers.CategoryControl.list

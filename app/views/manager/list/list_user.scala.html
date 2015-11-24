@@ -1,0 +1,103 @@
+@()(implicit request: RequestHeader, messages: Messages)
+
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="jumbotron panel panel-default">
+    <div class="row">
+        <info-user info="infoUser">
+            <span class="pull-left" ng-if="user">
+                <button type="button" class="btn btn-primary btn-lg" ng-click="openAside('left', true)">
+                    <span class="glyphicon glyphicon-align-justify"></span> @messages("menu")
+                </button>
+            </span>
+        </info-user>
+    </div>
+</div>
+
+<div class="jumbotron panel panel-default">
+    <h3 class="title text-center">Usuários Cadastrados.</h3>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <th>Avatar</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Descrição</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+            <tr ng-repeat="user in users">
+                <td class="">
+                    <img ng-src="{{user.avatarURL}}" class="profile-img img img-circle" style="width: 50px;"/>
+                </td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.desc}}</td>
+                <td><button type="button" class="btn btn-default" ng-click="open(user)">Editar</button></td>
+                <td><button type="button" class="btn btn-danger" ng-click="delete(user)">Excluir</button></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<div>
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Criar | Editar!</h3>
+        </div>
+        <div class="modal-body">
+
+        <form class="form-horizontal" name="newUser">
+            <fieldset>
+
+            <!-- Form Name -->
+            <legend>Usuário</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Nome">Nome</label>
+                <div class="col-md-4">
+                    <input id="Nome" name="newUser.name" placeholder="Nome" class="form-control input-md" ng-model="userToEdit.name" ng-required="true" type="text">
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Email">Email</label>
+                <div class="col-md-4">
+                    <input id="Email" name="newUser.email" placeholder="Email" class="form-control input-md" ng-model="userToEdit.email" ng-required="true" type="email">
+                </div>
+            </div>
+
+            <!-- Password input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="password">Senha</label>
+                <div class="col-md-4">
+                    <input id="password" name="newUser.password" placeholder="password" class="form-control input-md" ng-model="userToEdit.password" ng-required="true" type="password">
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Avatar">Avatar</label>
+                <div class="col-md-4">
+                    <input id="Avatar" name="newUser.avatar" placeholder="imagem do facebook" class="form-control input-md" ng-model="userToEdit.avatarURL" type="text">
+                    <span class="help-block">link da imagem do facebook</span>
+                </div>
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Descrição">Descrição</label>
+                <div class="col-md-4">
+                    <textarea class="form-control" id="Descrição" name="newUser.descrição" ng-model="userToEdit.desc">Descrição</textarea>
+                </div>
+            </div>
+            </fieldset>
+        </form>
+        </div>
+        <div class="modal-footer">
+            <button id="create" name="create" class="btn btn-success" ng-click="ok()" ng-disabled="newUser.$invalid" >Ok</button>
+            <button id="cancel" name="cancel" class="btn btn-danger" ng-click="cancel()">Cancelar</button>
+        </div>
+    </script>
+</div>

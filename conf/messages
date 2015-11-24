@@ -6,10 +6,8 @@ welcome=Seja bem vindo
 email=Email
 password=Password
 cite=Nilda - Doce&Tentação
-gallery=Galeria
 group=O grupo.
 about=Sobre nós!
-category=Categoria
 name=Nome
 add=Adicionar
 url=URL
@@ -27,6 +25,8 @@ clients=Clientes
 tips=Dicas
 tel=Telefone
 menu=Menu
+users=Usuários
+
 
 
 #Category | Product
@@ -43,10 +43,6 @@ success.remove=Exclusão OK
 success.update=Update OK
 success.add=Cadastro OK
 create.category=Criar Categoria
-url.small=URL da imagem menor
-url.large=URL da imagem maior
-our.products=Nossos produtos!
-our.products.detail=Confira todos os nossos produtos e delicie-se!
 url.small=URL da imagem menor
 url.large=URL da imagem maior
 our.products=Nossos produtos!
@@ -77,6 +73,7 @@ info.tips.culinary=Dicas de Culinária
 
 #Contact
 contact=Contato
+contacts=Contatos
 contact.required=Campos obrigatórios.
 email.send=E-mail enviado com sucesso
 email.send.fail=Erro ao enviar o e-mail, por favor tente novamente!
