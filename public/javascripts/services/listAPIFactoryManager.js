@@ -3,11 +3,10 @@
  */
 'use strict';
 angular.module('ndtM-app').config(
-    function($httpProvider){
+    function ($httpProvider) {
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
-    }
-);
+    });
 angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieStore, $state) {
 
     var global_error_handler;
@@ -15,7 +14,6 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     var auth = {
         user: null,
         authenticated: authenticated,
-        has_permission: has_permission,
         set_user: set_user,
         logout: logout
     };
@@ -26,32 +24,33 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
         deleteUsers: deleteUsers,
         createUser: createUser,
         updateUser: updateUser,
-        error_handler: set_error_handler,
-        auth: auth
+        auth: auth,
+        getCategories: getCategories,
+        getProducts: getProducts,
+        getGallery: getGallery,
+        updateGallery: updateGallery,
+        createGall: createGall,
+        deleteGallery: deleteGallery
     };
 
-    function authenticated(){
+    function authenticated() {
         set_user($cookieStore.get("user_auth"))
         return (auth.user !== null && auth.user !== undefined);
     };
 
-    function has_permission(permission){
-        return auth.user && auth.user.permissions[permission];
-    };
-
-    function set_user(user){
+    function set_user(user) {
         auth.user = user;
         $cookieStore.put("user_auth", auth)
     };
 
-    function logout(){
+    function logout() {
         auth.user = null;
     };
 
-    function _check_for_authentication(result){
-        result.success(function(data, status){
+    function _check_for_authentication(result) {
+        result.success(function (data, status) {
             set_user(data.response);
-        }).error(function(data, status){
+        }).error(function (data, status) {
             auth.user = null;
         });
 
@@ -63,16 +62,16 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
             url: '/admin/users/login/',
             data: credentials
         });
-        if(global_error_handler){
+        if (global_error_handler) {
             promise.catch(global_error_handler)
         }
         _check_for_authentication(promise);
         return promise;
     };
 
-    function getUsers(){
-        var promise ={};
-        if(authenticated()){
+    function getUsers() {
+        var promise = {};
+        if (authenticated()) {
             promise = $http({
                 method: 'get',
                 url: '/admin/users/'
@@ -83,41 +82,126 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
         return promise;
     };
     function deleteUsers(id) {
-        var promise = $http({
-            method: 'delete',
-            url: '/admin/users/delete/',
-            data: id
-        });
-        if(global_error_handler){
-            promise = null;
+        var promise = {};
+        if (authenticated()) {
+            promise = $http({
+                method: 'delete',
+                url: '/admin/users/delete/',
+                data: id
+            })
+        } else {
+            $state.go('home')
         }
         return promise;
     };
-    function createUser(user){
-        var promise = $http({
-            method: 'post',
-            url: '/admin/users/new/',
-            data: user
-        });
-        if(global_error_handler){
-            promise.catch(global_error_handler)
-        }
-        return promise;
-    }
-    function updateUser(user){
-        var promise = $http({
-            method: 'put',
-            url: '/admin/users/update/',
-            data: user
-        });
-        if(global_error_handler){
-            promise.catch(global_error_handler)
-        }
-        return promise;
-    }
 
-    function set_error_handler(f){
-        global_error_handler = f;
+    function createUser(user) {
+        var promise = {};
+        if (authenticated()) {
+            promise = $http({
+                method: 'post',
+                url: '/admin/users/new/',
+                data: user
+            });
+        } else {
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function updateUser(user) {
+        var promise = {};
+        if (authenticated()) {
+            promise = $http({
+                method: 'put',
+                url: '/admin/users/update/',
+                data: user
+            });
+        } else {
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function getCategories() {
+        var promise = {};
+        if (authenticated()) {
+            promise = $http({
+                method: 'get',
+                url: '/admin/category/list/'
+            })
+        } else {
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function getProducts() {
+        var promise = {};
+        if (authenticated) {
+            promise = $http({
+                method: 'get',
+                url: '/admin/product/list/ '
+            })
+        } else {
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function getGallery(){
+        var promise = {}
+        if(authenticated()){
+            promise = $http({
+                method: 'get',
+                url: '/admin/gallery/list/'
+            })
+        }else{
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function updateGallery(gal){
+        var promise = {}
+        if(authenticated()){
+            promise = $http({
+                method: 'put',
+                url: '/admin/gallery/update/',
+                data: gal
+            })
+        }else{
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function createGall(gal) {
+        var promise = {};
+        if (authenticated()) {
+            promise = $http({
+                method: 'post',
+                url: '/admin/gallery/new/',
+                data: gal
+            });
+        } else {
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function deleteGallery(id) {
+        var promise = {};
+        if (authenticated()) {
+            promise = $http({
+                method: 'delete',
+                url: '/admin/gallery/delete/',
+                data: id
+            })
+        } else {
+            $state.go('home')
+        }
+        return promise;
     };
 
     return factory;

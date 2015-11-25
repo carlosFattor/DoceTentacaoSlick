@@ -37,6 +37,10 @@ class Application @Inject()(val messagesApi: MessagesApi) extends Controller wit
         case "info_home" => Ok(views.html.manager.infos.info_home())
         case "login_user" => Ok(views.html.manager.forms.login_user())
         case "confirmation_modal" => Ok(views.html.alerts.ui_confirmation_modal())
+        case "list_category" => Ok(views.html.manager.list.lista_category())
+        case "list_product" => Ok(views.html.manager.list.list_product())
+        case "list_gallery" => Ok(views.html.manager.list.list_gallery())
+        case "list_contact" => Ok(views.html.manager.list.list_contacts())
         case _ => NotFound
       }
     )

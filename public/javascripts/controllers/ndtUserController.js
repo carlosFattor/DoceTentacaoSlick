@@ -37,7 +37,7 @@ angular.module('ndtM-app').controller('ndtUsersController', function($rootScope,
                     console.log(status);
                 });
         });
-    }
+    };
 
     $scope.create = function(){
         var modalInstance = $uibModal.open({
@@ -52,7 +52,6 @@ angular.module('ndtM-app').controller('ndtUsersController', function($rootScope,
             }
         });
         modalInstance.result.then(function(newUser){
-
             listAPIManager.createUser(newUser)
                 .success(function(data, status){
                     users();
@@ -60,8 +59,6 @@ angular.module('ndtM-app').controller('ndtUsersController', function($rootScope,
                 .error(function(data, status){
                     console.log(status);
                 })
-        }, function(){
-            $log.info('Modal dismissed at: '+ new Date());
         });
     }
 

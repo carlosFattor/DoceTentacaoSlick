@@ -16,6 +16,79 @@
 </div>
 <div class="jumbotron panel panel-default">
 
-    <h1>Lista de categorias</h1>
+    <h3 class="title text-center">Lista de categorias.</h3>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <th></th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th></th>
+            <th></th>
+            <tr ng-repeat="cat in categories">
+                <td><img ng-src="{{cat.url}}" class="img-circle" style="width: 50px;"/></td>
+                <td>{{cat.name}}</td>
+                <td>{{cat.desc}}</td>
+                <td><button type="button" class="btn btn-default" ng-click="open(cat)">Editar</button></td>
+                <td><button type="button" class="btn btn-danger" >Excluir</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
 
+
+<div>
+    <script type="text/ng-template" id="myModalCategory.html">
+
+    <div class="modal-header">
+    <h3 class="modal-title">Criar | Editar</h3>
+    </div>
+
+    <div class="modal-body">
+    <form class="form-horizontal">
+    <fieldset>
+
+    <!-- Form Name -->
+    <legend>Categoria</legend>
+
+    <!-- Text input-->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="name">Nome</label>
+    <div class="col-md-4">
+    <input id="name" name="name" placeholder="Nome" class="form-control input-md" required="" type="text">
+
+    </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="desc">Desc</label>
+    <div class="col-md-4">
+    <input id="desc" name="desc" placeholder="Descrição" class="form-control input-md" required="" type="text">
+
+    </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="url">Url</label>
+    <div class="col-md-4">
+    <input id="url" name="url" placeholder="Url" class="form-control input-md" required="" type="text">
+
+    </div>
+    </div>
+
+    <!-- Button (Double) -->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="btnCreate"></label>
+    <div class="col-md-8">
+    <button id="btnCreate" name="btnCreate" class="btn btn-success">Ok</button>
+    <button id="btnCancel" name="btnCancel" class="btn btn-danger">Cancel</button>
+    </div>
+    </div>
+
+    </fieldset>
+    </form>
+        </div>
+    </script>
 </div>

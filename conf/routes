@@ -50,10 +50,10 @@ GET           /gallery/list/                         controllers.GalleryControl.
 
 #Manager Gallery
 POST          /admin/gallery/new/                    controllers.GalleryControl.add
-PUT           /admin/gallery/new/                    controllers.GalleryControl.update
+PUT           /admin/gallery/update/                 controllers.GalleryControl.update
 GET           /admin/gallery/list/                   controllers.GalleryControl.list
 GET           /admin/gallery/edit/:id/               controllers.GalleryControl.edit(id: java.util.UUID)
-DELETE        /admin/gallery/delete/:id/             controllers.GalleryControl.delete(id: java.util.UUID)
+DELETE        /admin/gallery/delete/                 controllers.GalleryControl.delete
 
 #Public Contact
 POST          /contact/send/                         controllers.ContactControl.sendContact

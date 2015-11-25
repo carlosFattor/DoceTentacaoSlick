@@ -97,12 +97,12 @@ angular.module('ndtM-app').config(function ($stateProvider, $urlRouterProvider) 
         .state('contacts', {
             url: '/contacts/',
             templateUrl: '/admin/views/list_contact.html',
-            controller: 'ndtUsersController'
+            controller: 'ndtContactsController'
         })
         .state('gallery', {
             url: '/gallery/',
-            templateUrl: '/admin/views/list_contact.html',
-            controller: 'ndtUsersController'
+            templateUrl: '/admin/views/list_gallery.html',
+            controller: 'ndtGalleryController'
         })
 
 });

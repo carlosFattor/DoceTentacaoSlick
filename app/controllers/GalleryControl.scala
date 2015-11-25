@@ -62,8 +62,9 @@ class GalleryControl @Inject()(galService: GalleryService, val messagesApi: Mess
     })
   }
 
-  def delete(id: UUID) = Action.async { implicit request =>
-    galService.removeGallery(id).map { resp =>
+  def delete = Action.async(parse.tolerantText) { implicit request =>
+    val id = request.body
+      galService.removeGallery(UUID.fromString(id)).map { resp =>
       if(resp == 1){
         Ok(Json.toJson(SuccessResponse(resp)))
       } else {

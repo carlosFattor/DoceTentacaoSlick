@@ -6,7 +6,7 @@
     <div class="row">
 
         <info-user info="infoUser">
-            <span class="pull-left" ng-if="user">
+            <span class="pull-left">
                 <button type="button" class="btn btn-primary btn-lg" ng-click="openAside('left', true)">
                     <span class="glyphicon glyphicon-align-justify"></span> @messages("menu")
                 </button>
@@ -16,6 +16,20 @@
 </div>
 <div class="jumbotron panel panel-default">
 
-    <h1>Lista de produtos</h1>
+    <h3 class="title text-center">Lista de produtos.</h3>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr ng-repeat="prod in products">
+                <td><img ng-src="{{prod.imgSmallURL}}" class="img-circle" style="width: 50px;"/></td>
+                <td>{{prod.name}}</td>
+                <td>{{prod.desc}}</td>
+                <td>{{prod.comments}}</td>
+
+                <td>{{prod.feature}}</td>
+
+            </tr>
+        </table>
+    </div>
 
 </div>
