@@ -64,7 +64,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     };
 
     function loginUser(credentials) {
-        var promise = $http({
+        var promise = $https({
             method: 'post',
             url: '/admin/users/login/',
             data: credentials
@@ -79,7 +79,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function getUsers() {
         var promise = {};
         if (authenticated()) {
-            promise = $http({
+            promise = $https({
                 method: 'get',
                 url: '/admin/users/'
             });
@@ -91,7 +91,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function deleteUsers(id) {
         var promise = {};
         if (authenticated()) {
-            promise = $http({
+            promise = $https({
                 method: 'delete',
                 url: '/admin/users/delete/',
                 data: id
@@ -105,7 +105,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function createUser(user) {
         var promise = {};
         if (authenticated()) {
-            promise = $http({
+            promise = $https({
                 method: 'post',
                 url: '/admin/users/new/',
                 data: user
@@ -119,7 +119,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function updateUser(user) {
         var promise = {};
         if (authenticated()) {
-            promise = $http({
+            promise = $https({
                 method: 'put',
                 url: '/admin/users/update/',
                 data: user
@@ -133,7 +133,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function getCategories() {
         var promise = {};
         if (authenticated()) {
-            promise = $http({
+            promise = $https({
                 method: 'get',
                 url: '/admin/category/list/'
             })
@@ -146,7 +146,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function getProducts() {
         var promise = {};
         if (authenticated) {
-            promise = $http({
+            promise = $https({
                 method: 'get',
                 url: '/admin/product/list/ '
             })
@@ -159,7 +159,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function getGallery(){
         var promise = {}
         if(authenticated()){
-            promise = $http({
+            promise = $https({
                 method: 'get',
                 url: '/admin/gallery/list/'
             })
@@ -172,7 +172,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function updateGallery(gal){
         var promise = {}
         if(authenticated()){
-            promise = $http({
+            promise = $https({
                 method: 'put',
                 url: '/admin/gallery/update/',
                 data: gal
@@ -186,7 +186,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function createGall(gal) {
         var promise = {};
         if (authenticated()) {
-            promise = $http({
+            promise = $https({
                 method: 'post',
                 url: '/admin/gallery/new/',
                 data: gal
@@ -200,7 +200,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function deleteGallery(id) {
         var promise = {};
         if (authenticated()) {
-            promise = $http({
+            promise = $https({
                 method: 'delete',
                 url: '/admin/gallery/delete/',
                 data: id
@@ -214,7 +214,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function updateCategory(cat){
         var promise = {}
         if(authenticated()){
-            promise = $http({
+            promise = $https({
                 method: 'put',
                 url: '/admin/category/update/',
                 data: cat
@@ -228,7 +228,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function createCat(cat) {
         var promise = {};
         if (authenticated()) {
-            promise = $http({
+            promise = $https({
                 method: 'post',
                 url: '/admin/category/new/',
                 data: cat
@@ -242,7 +242,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function deleteCategory(id) {
         var promise = {};
         if (authenticated()) {
-            promise = $http({
+            promise = $https({
                 method: 'delete',
                 url: '/admin/category/delete/',
                 data: id
@@ -256,7 +256,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function createProduct(prod) {
         var promise = {};
         if (authenticated()) {
-            promise = $http({
+            promise = $https({
                 method: 'post',
                 url: '/admin/product/new/',
                 data: prod
@@ -270,7 +270,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function updateProduct(prod){
         var promise = {}
         if(authenticated()){
-            promise = $http({
+            promise = $https({
                 method: 'put',
                 url: '/admin/product/update/',
                 data: prod
@@ -284,7 +284,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function deleteProduct(id) {
         var promise = {};
         if (authenticated()) {
-            promise = $http({
+            promise = $https({
                 method: 'delete',
                 url: '/admin/product/delete/',
                 data: id
@@ -298,7 +298,7 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
     function getContacts() {
         var promise = {};
         if (authenticated()) {
-            promise = $http({
+            promise = $https({
                 method: 'get',
                 url: '/admin/contacts/'
             })
