@@ -8,6 +8,7 @@ import org.joda.time.DateTime
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
+import security.Authenticated
 import utils.Responses.{ErrorResponse, SuccessResponse}
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
@@ -48,6 +49,13 @@ class ContactControl @Inject()(emailService: EmailService, contService: ContactS
       case None    => {
         BadRequest(Json.toJson(ErrorResponse(BAD_REQUEST, messagesApi("email.news.error"))))
       }
+    }
+  }
+
+  def contacts = Authenticated.async { implicit request =>
+    contService.listContact().map {
+      case contacts: (Seq[Contact]) => Ok(Json.toJson(SuccessResponse(contacts)))
+      case _ => NotFound(Json.toJson(ErrorResponse(NOT_FOUND, "contact.not_found")))
     }
   }
 }

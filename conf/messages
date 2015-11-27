@@ -75,6 +75,7 @@ info.tips.culinary=Dicas de Culinária
 contact=Contato
 contacts=Contatos
 contact.required=Campos obrigatórios.
+contact.not_found=Contatos não encontrados
 email.send=E-mail enviado com sucesso
 email.send.fail=Erro ao enviar o e-mail, por favor tente novamente!
 email.subject=Email de contato

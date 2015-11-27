@@ -8,6 +8,7 @@ import models.Services.GalleryService
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
+import security.Authenticated
 import utils.Responses.{ErrorResponse, SuccessResponse}
 import scala.concurrent.ExecutionContext.Implicits._
 import scala.concurrent.Future
@@ -26,7 +27,7 @@ class GalleryControl @Inject()(galService: GalleryService, val messagesApi: Mess
     }
   }
 
-  def add = Action.async(parse.json) { implicit request =>
+  def add = Authenticated.async(parse.json) { implicit request =>
     val incomingGal = Gallery.formGallery.bindFromRequest
 
     incomingGal.fold({ error =>
@@ -39,14 +40,14 @@ class GalleryControl @Inject()(galService: GalleryService, val messagesApi: Mess
     })
   }
 
-  def edit(id: UUID) = Action.async { implicit request =>
+  def edit(id: UUID) = Authenticated.async { implicit request =>
     galService.findGallery(id).map {
       case Some(gal) => Ok(Json.toJson(SuccessResponse(gal)))
       case None => BadRequest(Json.toJson(ErrorResponse(BAD_REQUEST, messagesApi("gal.find.error"))))
     }
   }
 
-  def update = Action.async { implicit request =>
+  def update = Authenticated.async { implicit request =>
     val incomingGal = Gallery.formGallery.bindFromRequest
 
     incomingGal.fold({ error =>
@@ -62,7 +63,7 @@ class GalleryControl @Inject()(galService: GalleryService, val messagesApi: Mess
     })
   }
 
-  def delete = Action.async(parse.tolerantText) { implicit request =>
+  def delete = Authenticated.async(parse.tolerantText) { implicit request =>
     val id = request.body
       galService.removeGallery(UUID.fromString(id)).map { resp =>
       if(resp == 1){

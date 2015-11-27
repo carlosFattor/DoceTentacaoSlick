@@ -2,7 +2,7 @@
  * Created by carlos on 15/10/15.
  */
 'use strict';
-angular.module("ndtM-app", ['ui.router', 'ui.bootstrap', 'ngAside', 'uiInfoUser', 'uiLoginUser', 'ngCookies', 'uiConfirmationModal']);
+angular.module("ndtM-app", ['ui.router', 'ui.bootstrap', 'ngAside', 'uiInfoUser', 'uiLoginUser', 'ngCookies', 'uiConfirmationModal', 'angular-loading-bar', 'ngAnimate']);
 
 angular.module('ndtM-app').run(function ($rootScope, $aside, $state) {
     $rootScope.user;
@@ -63,6 +63,7 @@ angular.module('ndtM-app').run(function ($rootScope, $aside, $state) {
 });
 
 angular.module('ndtM-app').config(function ($stateProvider, $urlRouterProvider) {
+
 
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise("/");

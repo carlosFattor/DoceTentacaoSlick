@@ -13,9 +13,97 @@
             </span>
         </info-user>
     </div>
+
 </div>
 <div class="jumbotron panel panel-default">
 
-    <h1>Lista de contatos</h1>
+    <h3 class="title text-center">Lista de contatos.</h3>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr ng-repeat="cont in contacts">
+                <td>{{cont.name}}</td>
+                <td>{{cont.email}}</td>
+                <td>{{cont.phone}}</td>
+                <td>{{cont.data}}</td>
+                <td>{{cont.sent}}</td>
+                <td><button type="button" class="btn btn-default" ng-click="open(cont)">Detalhar</button></td>
+            </tr>
+        </table>
+    </div>
 
+</div>
+
+<div>
+    <script type="text/ng-template" id="myModalContact.html">
+    <form class="form-horizontal">
+    <fieldset>
+
+    <!-- Form Name -->
+    <legend>Contato</legend>
+
+    <!-- Text input-->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="name">Nome</label>
+    <div class="col-md-4">
+    <input id="name" name="name" ng-model="contToOpen.name" placeholder="" class="form-control input-md" type="text">
+
+    </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="email">Email</label>
+    <div class="col-md-4">
+    <input id="email" name="email" ng-model="contToOpen.email" placeholder="" class="form-control input-md" type="text">
+
+    </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="phone">Telefone</label>
+    <div class="col-md-4">
+    <input id="phone" name="phone" ng-model="contToOpen.phone" placeholder="" class="form-control input-md" type="text">
+
+    </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="webSite">Site</label>
+    <div class="col-md-4">
+    <input id="webSite" name="webSite" ng-model="contToOpen.webSite" placeholder="" class="form-control input-md" type="text">
+
+    </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="data">Data</label>
+    <div class="col-md-4">
+    <input id="data" name="data" ng-model="contToOpen.data" placeholder="" class="form-control input-md" type="text">
+
+    </div>
+    </div>
+
+    <!-- Textarea -->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="textEmail">Mensagem</label>
+    <div class="col-md-4">
+    <textarea class="form-control" id="textEmail" name="textEmail" ng-model="contToOpen.textEmail"></textarea>
+    </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="btnOk"></label>
+    <div class="col-md-4">
+    <button id="btnOk" name="btnOk" ng-click="ok(cont)" class="btn btn-primary">Ok</button>
+    </div>
+    </div>
+
+    </fieldset>
+    </form>
+    </script>
 </div>

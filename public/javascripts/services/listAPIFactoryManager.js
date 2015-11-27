@@ -36,7 +36,8 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
         deleteCategory: deleteCategory,
         createProduct: createProduct,
         updateProduct: updateProduct,
-        deleteProduct: deleteProduct
+        deleteProduct: deleteProduct,
+        getContacts: getContacts
     };
 
     function authenticated() {
@@ -287,6 +288,19 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
                 method: 'delete',
                 url: '/admin/product/delete/',
                 data: id
+            })
+        } else {
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function getContacts() {
+        var promise = {};
+        if (authenticated()) {
+            promise = $http({
+                method: 'get',
+                url: '/admin/contacts/'
             })
         } else {
             $state.go('home')

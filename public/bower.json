@@ -9,7 +9,9 @@
     "bootstrap-sass-official": "3.3.5",
     "es5-shim": "~2.1.0",
     "json3": "~3.2.6",
-    "angular-cookies": "~1.4.8"
+    "angular-cookies": "~1.4.8",
+    "angular-loading-bar": "~0.8.0",
+    "angular-animate": "~1.4.8"
   },
   "homepage": "https://github.com/carlosFattor/DoceTentacaoSlick",
   "authors": [

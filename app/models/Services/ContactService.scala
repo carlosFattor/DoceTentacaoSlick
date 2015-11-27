@@ -17,4 +17,7 @@ class ContactService @Inject()(contactDAO: ContactDAO){
     contactDAO.insert(contact)
   }
 
+  def listContact(): Future[Seq[Contact]] = {
+    contactDAO.list
+  }
 }
