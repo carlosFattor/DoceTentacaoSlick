@@ -8,6 +8,7 @@ import play.api.cache.Cached
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
+import security.Authenticated
 import utils.Responses.{SuccessResponse, ErrorResponse}
 import scala.concurrent.ExecutionContext.Implicits._
 import scala.concurrent.Future
@@ -25,7 +26,7 @@ class CategoryControl @Inject()(categoryService: CategoryService, val messagesAp
     }
   }
 
-  def add = Action.async(parse.json) { implicit request =>
+  def add = Authenticated.async(parse.json) { implicit request =>
 
     val incomingCategory = Category.formCategory.bindFromRequest()
 
@@ -40,14 +41,14 @@ class CategoryControl @Inject()(categoryService: CategoryService, val messagesAp
     })
   }
 
-  def edit(id: UUID) = Action.async { implicit request =>
+  def edit(id: UUID) = Authenticated.async { implicit request =>
     categoryService.findByID(id).map{
       case Some(cat) => Ok(Json.toJson(SuccessResponse(cat)))
       case None => NotFound(Json.toJson(ErrorResponse(BAD_REQUEST, messagesApi("cat.not.found"))))
     }
   }
 
-  def update = Action.async { implicit request =>
+  def update = Authenticated.async { implicit request =>
 
     val incomingCategory = Category.formCategory.bindFromRequest()
 
@@ -65,9 +66,10 @@ class CategoryControl @Inject()(categoryService: CategoryService, val messagesAp
     })
   }
 
-  def delete(id: UUID) = Action.async { implicit request =>
+  def delete = Authenticated.async(parse.tolerantText) { request =>
+    val id = request.body
 
-    categoryService.delete(id).map{ resp =>
+    categoryService.delete(java.util.UUID.fromString(id)).map{ resp =>
       if (resp == 1) {
         Ok(Json.toJson(SuccessResponse(resp)))
       } else {

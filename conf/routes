@@ -29,7 +29,7 @@ POST          /admin/category/new/                   controllers.CategoryControl
 PUT           /admin/category/update/                controllers.CategoryControl.update
 GET           /admin/category/list/                  controllers.CategoryControl.list
 GET           /admin/category/edit/:id/              controllers.CategoryControl.edit(id: java.util.UUID)
-DELETE        /admin/category/delete/:id/            controllers.CategoryControl.delete(id: java.util.UUID)
+DELETE        /admin/category/delete/                controllers.CategoryControl.delete
 
 #Public Product
 GET           /product/list/                         controllers.ProductControl.list
@@ -43,7 +43,7 @@ POST          /admin/product/new/                    controllers.ProductControl.
 PUT           /admin/product/update/                 controllers.ProductControl.update
 GET           /admin/product/list/                   controllers.ProductControl.list
 GET           /admin/product/edit/:id/               controllers.ProductControl.edit(id: java.util.UUID)
-DELETE        /admin/product/delete/:id/             controllers.ProductControl.delete(id: java.util.UUID)
+DELETE        /admin/product/delete/                 controllers.ProductControl.delete
 
 #Public Gallery
 GET           /gallery/list/                         controllers.GalleryControl.list

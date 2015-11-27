@@ -32,9 +32,9 @@ angular.module('ndtM-app').controller('ndtCategoriesController', function ($root
         });
 
         modalInstance.result.then(function(galSelected){
-            listAPIManager.updateGallery(galSelected)
+            listAPIManager.updateCategory(galSelected)
                 .success(function(data, status){
-                    getGallery();
+                    getCategories();
                 })
                 .error(function(data, status){
                     console.log(status);
@@ -43,6 +43,52 @@ angular.module('ndtM-app').controller('ndtCategoriesController', function ($root
                 })
 
             $scope.selected = galSelected;
+        });
+    };
+
+    $scope.create = function(){
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'myModalCategory.html',
+            controller: 'ModalInstanceCategoryCtrl',
+            size: 'lg',
+            resolve: {
+                catToOpen: function(){
+                    return newCat = {};
+                }
+            }
+        });
+        modalInstance.result.then(function(newCat){
+            listAPIManager.createCat(newCat)
+                .success(function(data, status){
+                    getCategories();
+                })
+                .error(function(data, status){
+                    console.log(status);
+                }).then(function(){
+                    $log.info("created gallery");
+                });
+        });
+    };
+
+    $scope.delete = function (cat) {
+
+        var modalOptions = {
+            closeButtonText: 'Cancel',
+            actionButtonText: 'Apagar Categoria',
+            headerText: 'Apagar ' + cat.name + '?',
+            bodyText: 'Tem certeza que quer apagar esse item?'
+        };
+
+        uiConfirmation.showModal({}, modalOptions).then(function (result) {
+
+            listAPIManager.deleteCategory(cat.id)
+                .success(function(data, status){
+                    getCategories();
+                })
+                .error(function(data, status){
+                    console.log(status);
+                });
         });
     };
 });

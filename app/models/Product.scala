@@ -32,7 +32,7 @@ object Product {
     "imgSmallURL" -> text,
     "imgLargeURL" -> text,
     "comments" -> text,
-    "featured" -> optional(boolean)
+    "feature" -> optional(boolean)
     )(Product.apply)(Product.unapply))
 
   val dbConfig = DatabaseConfigProvider.get[JdbcProfile](Play.current)

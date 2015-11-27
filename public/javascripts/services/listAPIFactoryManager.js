@@ -30,7 +30,13 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
         getGallery: getGallery,
         updateGallery: updateGallery,
         createGall: createGall,
-        deleteGallery: deleteGallery
+        deleteGallery: deleteGallery,
+        updateCategory: updateCategory,
+        createCat: createCat,
+        deleteCategory: deleteCategory,
+        createProduct: createProduct,
+        updateProduct: updateProduct,
+        deleteProduct: deleteProduct
     };
 
     function authenticated() {
@@ -196,6 +202,90 @@ angular.module('ndtM-app').factory('listAPIManager', function ($http, $cookieSto
             promise = $http({
                 method: 'delete',
                 url: '/admin/gallery/delete/',
+                data: id
+            })
+        } else {
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function updateCategory(cat){
+        var promise = {}
+        if(authenticated()){
+            promise = $http({
+                method: 'put',
+                url: '/admin/category/update/',
+                data: cat
+            })
+        }else{
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function createCat(cat) {
+        var promise = {};
+        if (authenticated()) {
+            promise = $http({
+                method: 'post',
+                url: '/admin/category/new/',
+                data: cat
+            });
+        } else {
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function deleteCategory(id) {
+        var promise = {};
+        if (authenticated()) {
+            promise = $http({
+                method: 'delete',
+                url: '/admin/category/delete/',
+                data: id
+            })
+        } else {
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function createProduct(prod) {
+        var promise = {};
+        if (authenticated()) {
+            promise = $http({
+                method: 'post',
+                url: '/admin/product/new/',
+                data: prod
+            });
+        } else {
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function updateProduct(prod){
+        var promise = {}
+        if(authenticated()){
+            promise = $http({
+                method: 'put',
+                url: '/admin/product/update/',
+                data: prod
+            })
+        }else{
+            $state.go('home')
+        }
+        return promise;
+    };
+
+    function deleteProduct(id) {
+        var promise = {};
+        if (authenticated()) {
+            promise = $http({
+                method: 'delete',
+                url: '/admin/product/delete/',
                 data: id
             })
         } else {

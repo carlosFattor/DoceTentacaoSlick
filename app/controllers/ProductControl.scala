@@ -8,6 +8,7 @@ import models.Services.ProductService
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
+import security.Authenticated
 import utils.Responses.{ErrorResponse, SuccessResponse}
 
 import scala.concurrent.ExecutionContext.Implicits._
@@ -54,7 +55,7 @@ class ProductControl @Inject()(prodService: ProductService, val messagesApi: Mes
     }
   }
 
-  def add = Action.async(parse.json) { implicit request =>
+  def add = Authenticated.async(parse.json) { implicit request =>
     val incomingProd = Product.formProduct.bindFromRequest()
 
     incomingProd.fold({ error =>
@@ -68,20 +69,21 @@ class ProductControl @Inject()(prodService: ProductService, val messagesApi: Mes
     })
   }
 
-  def edit(id: UUID) = Action.async { implicit request =>
+  def edit(id: UUID) = Authenticated.async { implicit request =>
     prodService.findProduct(id).map {
       case Some(prod) => Ok(Json.toJson(SuccessResponse(prod)))
       case None => NotFound(Json.toJson(ErrorResponse(NOT_FOUND, messagesApi("prod.not_found"))))
     }
   }
 
-  def update = Action.async { implicit request =>
+  def update = Authenticated.async { implicit request =>
     val incomingProd = Product.formProduct.bindFromRequest
 
     incomingProd.fold({ error =>
       val response = ErrorResponse(BAD_REQUEST, messagesApi("prod.up.fail"))
       Future.successful(BadRequest(Json.toJson(response)))
     }, { prod =>
+
       prodService.updateProduct(prod).map { resp =>
         if (resp == 1) {
           Created(Json.toJson(SuccessResponse(resp)))
@@ -92,8 +94,10 @@ class ProductControl @Inject()(prodService: ProductService, val messagesApi: Mes
     })
   }
 
-  def delete(id: UUID) = Action.async { implicit request =>
-    prodService.removeProduct(id).map { resp =>
+  def delete = Authenticated.async(parse.tolerantText) { request =>
+    val id = request.body
+
+    prodService.removeProduct(java.util.UUID.fromString(id)).map { resp =>
       if (resp == 1) {
         Ok(Json.toJson(SuccessResponse(resp)))
       } else {
