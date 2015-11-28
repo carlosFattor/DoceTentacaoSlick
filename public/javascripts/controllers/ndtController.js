@@ -156,7 +156,7 @@ angular.module("ndt-app").controller("ndtContactControl", function($scope, listA
     }
 });
 
-angular.module("ndt-app").controller("ndtKnowControl", function($scope, listAPI){
+angular.module("ndt-app").controller("ndtKnowControl", function($scope){
     var mapOptions = {
         zoom: 17,
         center: new google.maps.LatLng(-21.99859, -47.884205),

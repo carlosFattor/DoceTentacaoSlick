@@ -7,40 +7,40 @@ angular.module('ndt-app').config(
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         $httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
     });
-angular.module("ndt-app").factory("listAPI", function ($http, config) {
+angular.module("ndt-app").factory("listAPI", function ($http) {
     var _getList = function () {
         return $http.get(config.baseURL + "/list/");
     };
 
     var _getListCategory = function () {
-        return $http.get(config.baseURL + "/category/list/");
+        return $http.get("/category/list/");
     };
 
     var _getProduct = function (id) {
-        return $http.get(config.baseURL + "/product/get/" + id + "/");
+        return $http.get("/product/get/" + id + "/");
     }
     var _getListProductFeatured = function () {
-        return $http.get(config.baseURL + "/product/list_featured/");
+        return $http.get("/product/list_featured/");
     };
 
     var _getListProducts = function (id) {
-        return $http.get(config.baseURL + "/product/list_products/" + id + "/");
+        return $http.get("/product/list_products/" + id + "/");
     }
 
     var _getListGallery = function () {
-        return $http.get(config.baseURL + "/gallery/list/")
+        return $http.get("/gallery/list/")
     }
 
     var _sendContact = function (contact) {
-        return $http.post(config.baseURL + "/contact/send/", contact)
+        return $http.post("/contact/send/", contact)
     }
 
     var _sendNews = function (email) {
-        return $http.post(config.baseURL + "/contact/news/", email)
+        return $http.post("/contact/news/", email)
     }
 
     var _findListProds = function (name) {
-        return $http.get(config.baseURL + "/product/get_list/" + name + "/")
+        return $http.get("/product/get_list/" + name + "/")
     }
 
     return {
