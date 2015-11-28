@@ -7,7 +7,7 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala).enablePlugins(Sb
 scalaVersion := "2.11.7"
 
 DigestKeys.algorithms += "sha1"
-pipelineStages := Seq(digest, gzip)
+pipelineStages := Seq(uglify, digest, gzip)
 
 libraryDependencies ++= Seq(
   filters,
