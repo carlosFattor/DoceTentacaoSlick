@@ -2,6 +2,11 @@
  * Created by carlos on 15/10/15.
  */
 'use strict';
+angular.module('ndt-app').config(
+    function ($httpProvider) {
+        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+    });
 angular.module("ndt-app").factory("listAPI", function ($http, config) {
     var _getList = function () {
         return $http.get(config.baseURL + "/list/");
