@@ -41,7 +41,7 @@ case class Contact(id: Option[UUID],
     val email2Contact = Email(
       subject,
       "Nilda Doce Tentação " + current.configuration.getString("play.email.admin").getOrElse(""),
-      Seq("carlos.fattor@gmail.com", current.configuration.getString("play.email.admin").getOrElse("")),
+      Seq(current.configuration.getString("play.email.admin").getOrElse("")),
       bodyText = Some(textEmail),
       bodyHtml = Some(views.html.emails.email_contact(this).toString()))
 
