@@ -1,7 +1,7 @@
-angular.module("ndt-app").directive("uiAlert", function(config){
+angular.module("ndt-app").directive("uiAlert", function(){
 
     return {
-        templateUrl: config.baseURL+"/views/ui_alert.html",
+        templateUrl: "/views/ui_alert.html",
         replace: true,
         restrict: "AE",
         scope: {
