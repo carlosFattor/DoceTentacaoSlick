@@ -2,7 +2,21 @@
  * Created by carlos on 15/10/15.
  */
 'use strict';
-angular.module("ndt-app", []);
+angular.module("ndt-app", ['angular-google-analytics']);
+
+angular.module('ndt-app').config(function(AnalyticsProvider){
+    AnalyticsProvider
+        .logAllCalls(true)
+        .startOffline(true)
+        .useEcommerce(true, true);
+    AnalyticsProvider.setAccount('UA-61707535-1');
+    AnalyticsProvider.useDisplayFeatures(true);
+    AnalyticsProvider.useEnhancedLinkAttribution(true);
+    AnalyticsProvider.useECommerce(true, true);
+    AnalyticsProvider.trackPages(true);
+    AnalyticsProvider.setHybridMobileSupport(true);
+    AnalyticsProvider.setDomainName('nildadocetentacao.com.br');
+});
 
 angular.module("ndt-app").run(function ($rootScope) {
     $rootScope.user = {};

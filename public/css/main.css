@@ -11,7 +11,6 @@ button[disabled] {
 }
 
 .menu {
-    width: 550px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -215,8 +214,6 @@ dt {
     color: #DEBB1E;
 }
 
-/* Gallery */
-/* Demo */
 .magnific-gallery
 {
     list-style: none;
@@ -244,7 +241,7 @@ dt {
 .mfp-example .mfp-container.mfp-image-holder .mfp-img
 {
     padding: 0;
-    max-height: 800px;
+    max-height: 500px;
     border: 12px solid #fff;
 }
 
@@ -287,7 +284,7 @@ dt {
 .mfp-example .mfp-container .mfp-top-bar
 {
     padding: 10px 50px 10px 20px;
-    margin-top: 70px; /* decoration always visible */
+    margin-top: 50px; /* decoration always visible */
 
     background: #539daa url(http://i1232.photobucket.com/albums/ff372/Marcin_Gil/magnific%20example/header-bg.png) repeat;
     text-align: center;
