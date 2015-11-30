@@ -1,28 +1,28 @@
 package controllers
 
+import java.util.UUID
 import javax.inject.Inject
-
 import forms.SignInForm
 import models.Services.UserService
 import models.User
+import play.api.i18n.{MessagesApi, I18nSupport}
 import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
+import security.Authenticated
 import utils.Responses.{ErrorResponse, SuccessResponse}
-
 import scala.concurrent.ExecutionContext.Implicits._
 import scala.concurrent.Future
 
 /**
  * Created by carlos on 16/10/15.
  */
-class UserControl @Inject()(userService: UserService) extends Controller {
+class UserControl @Inject()(userService: UserService, val messagesApi: MessagesApi) extends Controller with I18nSupport {
 
   def login = Action.async(parse.json) { implicit request =>
     val incomingSign = request.body.validate[SignInForm]
 
-    incomingSign.fold(error => {
-      val errorMsg = s"error value from request"
-      val response = ErrorResponse(ErrorResponse.INVALID_JSON, errorMsg)
+    incomingSign.fold( { error =>
+      val response = ErrorResponse(BAD_REQUEST, messagesApi("request.error"))
       Future.successful(BadRequest(Json.toJson(response)))
     }, { sign =>
       userService.validateUser(sign.email, sign.password).flatMap {
@@ -30,36 +30,71 @@ class UserControl @Inject()(userService: UserService) extends Controller {
           Future.successful(Ok(Json.toJson(SuccessResponse(user))).withSession("email" -> user.email))
         }
         case None => {
-          Future.successful(NotFound(Json.toJson(ErrorResponse(NOT_FOUND, "No user found"))))
+          Future.successful(NotFound(Json.toJson(ErrorResponse(NOT_FOUND, messagesApi("user.not.found")))))
         }
       }
     })
   }
 
   def logout = Action {
-    Ok("").withNewSession
+    Ok(Json.toJson(SuccessResponse(OK))).withNewSession
   }
 
-  def add = Action.async(parse.json) { implicit request =>
-    val incomingUser = request.body.validate[User]
+  def add = Authenticated.async { implicit request =>
+    val incomingUser = User.formUser.bindFromRequest()
 
     incomingUser.fold(error => {
-      val errorMsg = s"error value from request"
-      val response = ErrorResponse(ErrorResponse.INVALID_JSON, errorMsg)
+      val response = ErrorResponse(BAD_REQUEST, messagesApi("request.error"))
       Future.successful(BadRequest(Json.toJson(response)))
     }, { newUser =>
       userService.addUser(newUser).flatMap {
         case Some(user) => Future.successful(Ok(Json.toJson(SuccessResponse(user))))
-        case None => Future.successful(NotFound(Json.toJson(ErrorResponse(NOT_FOUND, "Error on try save USer"))))
+        case None => Future.successful(BadRequest(Json.toJson(ErrorResponse(NOT_FOUND, messagesApi("user.not.save")))))
       }
     })
   }
 
-  def users = Action.async { implicit request =>
+  def users = Authenticated.async { implicit request =>
     val usersFuture = userService.findListUser()
 
-    usersFuture.map{ users =>
-      Ok(Json.toJson(SuccessResponse(users)))
+    usersFuture.map {
+      case users: Seq[User] =>Ok(Json.toJson(SuccessResponse(users)))
+      case _ => NotFound(Json.toJson(ErrorResponse(NOT_FOUND, messagesApi("user.not.found"))))
+    }
+  }
+
+  def edit(userID: UUID) = Authenticated.async { implicit request =>
+    userService.findUser(userID).map {
+      case Some(user) => Ok(Json.toJson(SuccessResponse(user)))
+      case None => NotFound(Json.toJson(ErrorResponse(NOT_FOUND, messagesApi("user.not.found"))))
+    }
+  }
+
+  def update = Authenticated.async { implicit request =>
+    val incomingUser = User.formUser.bindFromRequest()
+
+    incomingUser.fold(error => {
+      val response = ErrorResponse(BAD_REQUEST, messagesApi("request.error"))
+      Future.successful(BadRequest(Json.toJson(response)))
+    }, { newUser =>
+      userService.updateUSer(newUser).map { resp =>
+        if (resp > 0) {
+          Ok(Json.toJson(SuccessResponse(resp)))
+        } else {
+          BadRequest(Json.toJson(resp))
+        }
+      }
+    })
+  }
+
+  def delete = Authenticated.async(parse.tolerantText) { request =>
+    val incomingIdUser = request.body
+    userService.deleteUser(UUID.fromString(incomingIdUser)).map{ resp =>
+      if(resp == 1){
+        Ok(Json.toJson(SuccessResponse(resp)))
+      } else {
+        BadRequest(Json.toJson(ErrorResponse(BAD_REQUEST, messagesApi("user.not.found"))))
+      }
     }
   }
 }

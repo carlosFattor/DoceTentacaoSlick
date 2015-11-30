@@ -1,9 +1,106 @@
-@()
+@()(implicit request: RequestHeader, messages: Messages)
 
-<div ng-controller="ndtController">
-
-    <h1>{{app}}</h1>
-    <h1>Home</h1>
-    <h1 ng-bind="message"></h1>
-
+<div ng-show="error">
+    <ui-alert title="Ops, aconteceu um problema !" message="error"></ui-alert>
 </div>
+<div class="row">
+
+    <div id="fail" class="alert alert-error" ng-show="msgNOK">
+        <p>{{msgNOK}}</p>
+    </div>
+
+
+    <div id="success" class="alert alert-success col-6" ng-show="msgOk">
+        <p>{{msgOk}}</p>
+    </div>
+
+    <div class="col-md-3 pull-left">
+        <fieldset>
+            <input autocomplete="off" placeholder="News Letter" name="news" type="email" ng-model="news"
+            data-toggle="tooltip" data-placement="bottom" title="{{infoNews}}" />
+            <button type="submit" name="buttonNews" class="btn btn-primary" autocomplete="off" ng-click="sendNews(news)">
+                <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+            </button>
+            <div id="msgemail"></div>
+        </fieldset>
+    </div>
+
+    <div class="col-md-3 pull-right">
+        <form>
+            <fieldset>
+                <input autocomplete="off" placeholder="Buscar" id="search" name="search" type="text" data-toggle="tooltip" data-placement="bottom" title="Pesquise nossos produto" />
+                <button type="submit" id="myButton" class="btn btn-default" autocomplete="off">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10">
+        <h1>@messages("welcome")!</h1>
+        <p>@messages("info.mission")</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-9 col-sm-4 col-md-4" >
+        <div id="slides_control">
+            <uib-carousel interval="myInterval" no-wrap="noWrapSlides">
+                <uib-slide ng-repeat="slide in slides" active="slide.active">
+                    <img ng-src="{{slide.image}}" style="margin:auto;">
+                    <div class="carousel-caption">
+
+                        <h4>{{slide.text}}</h4>
+                    </div>
+                </uib-slide>
+            </uib-carousel>
+        </div>
+    </div>
+    <div class="col-xs-9 col-sm-4 col-md-4">
+        <h2>@messages("products")</h2>
+        <p><img src="@routes.Assets.versioned("img/icons/cake_1.png")" style="float : left ;" class="img-rounded"/>
+            @messages("info.ingredient")
+        </p>
+
+    </div>
+    <div class="col-xs-9 col-sm-4 col-md-4">
+        <h2>@messages("clients")</h2>
+        <p><img src="@routes.Assets.versioned("img/icons/customer.png")" style="float : left ;" class="img-rounded"/>
+            @messages("info.clients")
+        </p>
+
+    </div>
+</div>
+<hr>
+<div class="row" style="margin-bottom : 100px ;">
+    <div class="col-md-12">
+        <h2>@messages("tips")</h2>
+        <p>@messages("info.tips")</p>
+        <p>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            @messages("info.tips.culinary")
+            </button>
+        </p>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel">Ainda não</h3>
+            </div>
+            <div class="modal-body">
+                <p>Nossa seção de dicas de culinária está sendo desenvolvida, em breve você terá em mãos diversas informações que lhe ajudaram em sua cozinha.
+                    Fique atento, em alguns dias estaremos estaremos entrando em contato com os inscritos de nossa News Letter. <b>News Letter<b>.</p>
+                <cite>Nilda - Doce & Tentação</cite>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

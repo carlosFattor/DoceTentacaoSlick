@@ -1,0 +1,24 @@
+@()(implicit request: RequestHeader, messages: Messages)
+
+<div>
+    <div id="info"></div>
+
+    <div class="page-header hidden-xs">
+        <h1>@messages("our.products")</h1>
+        <p>@messages("our.products.detail")</p>
+    </div>
+    <div class="row" style="margin-bottom : 100px ;">
+        <div ng-repeat="cat in categories">
+            <div class="col-md-3 col-sm-4 col-xs-8">
+                <div style="margin-left: 25px;">
+                </div>
+                <a ui-sref="lista_produtos({id: cat.id})" class="thumbnail">
+                    <img ng-src="{{cat.url}}"
+                    class="img-rounded" data-placement="top" title="{{cat.desc}}"
+                    style="width: 90%;" />
+                </a>
+                <p>{{cat.name}}</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+@()
+
+<div class="row" style="margin-bottom: 100px;">
+    <div ng-repeat="prod in products">
+        <div class="col-md-3 col-sm-4 col-xs-8">
+            <div class="thumbnail">
+                <div style="margin-left: 25px;">
+                </div>
+                <a ui-sref="produto_detalhe({id: prod.id})" class="thumbnail">
+                    <img ng-src="{{prod.imgSmallURL}}"
+                    class="img-rounded" data-placement="top" title="{{prod.desc}}"
+                    style="width: 90%;">
+                </a>
+                <h6>{{prod.name}}</h6>
+            </div>
+        </div>
+    </div>
+
+</div>

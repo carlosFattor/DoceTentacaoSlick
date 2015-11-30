@@ -1,0 +1,126 @@
+@()(implicit request: RequestHeader, messages: Messages)
+
+<link href='//fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="jumbotron panel panel-default">
+    <div class="row">
+
+        <info-user info="infoUser">
+            <span class="pull-left">
+                <button type="button" class="btn btn-primary btn-lg" ng-click="openAside('left', true)">
+                    <span class="glyphicon glyphicon-align-justify"></span> @messages("menu")
+                </button>
+            </span>
+        </info-user>
+    </div>
+</div>
+<div class="jumbotron panel panel-default">
+
+    <h3 class="title text-center">Lista de produtos.</h3>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr ng-repeat="prod in products">
+                <td><img ng-src="{{prod.imgSmallURL}}" class="img-circle" style="width: 50px;"/></td>
+                <td>{{prod.name}}</td>
+                <td>{{prod.desc}}</td>
+                <td>{{prod.comments}}</td>
+                <td>{{getCategoryById(prod.categoryID)}}</td>
+                <td><input name="frmProd.feature" id="feature-0" type="checkbox" ng-model="prod.feature" disabled="true"></td>
+                <td><button type="button" class="btn btn-default" ng-click="open(prod)">Editar</button></td>
+                <td><button type="button" class="btn btn-danger" ng-click="delete(prod)">Excluir</button></td>
+            </tr>
+        </table>
+    </div>
+    <hr/>
+    <div>
+        <button type="button" class="btn btn-primary" ng-click="create()">Criar item.</button>
+    </div>
+</div>
+<div>
+    <script type="text/ng-template" id="myModalProduct.html">
+        <form class="form-horizontal" name="frmProd">
+            <fieldset>
+
+            <!-- Form Name -->
+            <legend>Produtos</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="name">Nome</label>
+              <div class="col-md-4">
+              <input id="name" name="frmProd.name" placeholder="Nome do produto" class="form-control input-md" ng-model="prodToOpen.name" ng-required="true" type="text">
+
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="desc">Descrição</label>
+              <div class="col-md-4">
+              <input id="desc" name="frmProd.desc" placeholder="Descrição do produto" class="form-control input-md" ng-model="prodToOpen.desc" ng-required="true" type="text">
+
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="comments">Comentário</label>
+              <div class="col-md-4">
+              <input id="comments" name="frmProd.comments" placeholder="Comentário" class="form-control input-md" ng-model="prodToOpen.comments" type="text">
+
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="imgSmallURL">Url Imagem P</label>
+              <div class="col-md-4">
+              <input id="imgSmallURL" name="frmProd.imgSmallURL" placeholder="Url da imagem pequena" class="form-control input-md" ng-model="prodToOpen.imgSmallURL" ng-required="true" type="text">
+
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="imgLargeURL">Url Imagem G</label>
+              <div class="col-md-4">
+              <input id="imgLargeURL" name="frmProd.imgLargeURL" placeholder="Url da imagem grande" class="form-control input-md" ng-model="prodToOpen.imgLargeURL" ng-required="true" type="text">
+
+              </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="categoryID">Categoria</label>
+              <div class="col-md-4">
+                <select id="categoryID" name="frmProd.categoryID" ng-model="prodToOpen.categoryID" ng-options="cat.id as cat.name for cat in categories" class="form-control">
+                    <option value="">Selecione uma categoria</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Multiple Checkboxes (inline) -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="feature"></label>
+              <div class="col-md-4">
+                <label class="checkbox-inline" for="feature-0">
+                  <input name="frmProd.feature" id="feature-0" ng-model="prodToOpen.feature" type="checkbox">
+                destaque
+                </label>
+              </div>
+            </div>
+
+            <!-- Button (Double) -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="btnOk"></label>
+              <div class="col-md-8">
+                <button id="btnOk" name="btnOk" class="btn btn-success" ng-click="ok()">Ok</button>
+              <button id="btnCancel" name="btnCancel" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+              </div>
+            </div>
+
+            </fieldset>
+        </form>
+    </script>
+</div>

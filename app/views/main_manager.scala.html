@@ -1,0 +1,72 @@
+@()(content: Html)(implicit request: RequestHeader, messages: Messages)
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="ndtM-app">
+    <head>
+        <meta charset="UTF-8">
+        <title>Teste</title>
+        <link rel="stylesheet" href="@routes.Assets.versioned("bower_components/bootstrap/dist/css/bootstrap.min.css")" />
+        <link rel="stylesheet" href="@routes.Assets.versioned("bower_components/angular-motion/dist/angular-motion.css")" />
+        <link rel="stylesheet" href="@routes.Assets.versioned("bower_components/angular-loading-bar/build/loading-bar.min.css")" />
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/main_manager.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/aside.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/animate.css")">
+
+            <!-- ****** favicons do faviconit.com ****** -->
+        <link rel="shortcut icon" href="@routes.Assets.versioned("img/icons/favicon.ico")">
+        <link rel="icon" sizes="16x16 32x32 64x64" href="@routes.Assets.versioned("img/icons/favicon.ico")">
+        <link rel="icon" type="image/png" sizes="196x196" href="@routes.Assets.versioned("img/icons/favicon-192.png")">
+        <link rel="icon" type="image/png" sizes="160x160" href="@routes.Assets.versioned("img/icons/favicon-160.png")">
+        <link rel="icon" type="image/png" sizes="96x96" href="@routes.Assets.versioned("img/icons/favicon-96.png")">
+        <link rel="icon" type="image/png" sizes="64x64" href="@routes.Assets.versioned("img/icons/favicon-64.png")">
+        <link rel="icon" type="image/png" sizes="32x32" href="@routes.Assets.versioned("img/icons/favicon-32.png")">
+        <link rel="icon" type="image/png" sizes="16x16" href="@routes.Assets.versioned("img/icons/favicon-16.png")">
+        <link rel="apple-touch-icon" href="@routes.Assets.versioned("img/icons/favicon-57.png")">
+        <link rel="apple-touch-icon" sizes="114x114" href="@routes.Assets.versioned("img/icons/favicon-114.png")">
+        <link rel="apple-touch-icon" sizes="72x72" href="@routes.Assets.versioned("img/icons/favicon-72.png")">
+        <link rel="apple-touch-icon" sizes="144x144" href="@routes.Assets.versioned("img/icons/favicon-144.png")">
+        <link rel="apple-touch-icon" sizes="60x60" href="@routes.Assets.versioned("img/icons/favicon-60.png")">
+        <link rel="apple-touch-icon" sizes="120x120" href="@routes.Assets.versioned("img/icons/favicon-120.png")">
+        <link rel="apple-touch-icon" sizes="76x76" href="@routes.Assets.versioned("img/icons/favicon-76.png")">
+        <link rel="apple-touch-icon" sizes="152x152" href="@routes.Assets.versioned("img/icons/favicon-152.png")">
+        <link rel="apple-touch-icon" sizes="180x180" href="@routes.Assets.versioned("img/icons/favicon-180.png")">
+        <meta name="msapplicversionedion-TileColor" content="#FFFFFF">
+        <meta name="msapplicversionedion-TileImage" content="img/icons/favicon-144.png">
+        <meta name="msapplicversionedion-config" content="img/icons/browserconfig.xml">
+            <!-- ****** favicons do faviconit.com ****** -->
+
+
+
+    </head>
+    <body>
+        <div class="container">
+            @content
+        </div>
+
+            <!-- build:js scripts/vendor.js -->
+            <!-- bower:js -->
+        <script type="text/javascript" src="@routes.Assets.versioned("bower_components/jquery/dist/jquery.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("bower_components/angular/angular.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("bower_components/bootstrap/dist/js/bootstrap.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("bower_components/angular-ui-router/release/angular-ui-router.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("bower_components/angular-cookies/angular-cookies.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("bower_components/angular-animate/angular-animate.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("bower_components/angular-loading-bar/build/loading-bar.min.js")"></script>
+            <!-- endbower -->
+            <!-- endbuild -->
+
+            <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/appManager.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/services/uiConfirmationModalService.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/services/listAPIFactoryManager.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/controllers/ndtControllerManager.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/controllers/ndtCategoriesController.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/controllers/ndtProductsController.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/controllers/ndtUserController.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/controllers/ndtGalleryController.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/controllers/ndtContactsController.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/services/aside.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/directives/uiInfoUserDirective.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("javascripts/directives/uiLoginUserDirective.js")"></script>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+@()
+<div class="row">
+<ul class="magnific-gallery">
+
+    <li ng-repeat="gal in galleryItens" style="margin: 25px;">
+
+        <a href="{{gal.imgLargeURL}}" title="{{gal.name}} ." >
+            <img ng-src="{{gal.imgSmallURL}}" alt="" style="margin: 5px;" class="img-thumbnail img-responsive mfp-img-mobile"/>
+        </a>
+        <p>{{gal.name}}</p>
+    </li>
+
+</ul>
+</div>

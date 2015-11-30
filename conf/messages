@@ -1,0 +1,90 @@
+ndt=Nilda Doce Tentação
+
+error.required=*
+
+welcome=Seja bem vindo
+email=Email
+password=Password
+cite=Nilda - Doce&Tentação
+group=O grupo.
+about=Sobre nós!
+name=Nome
+add=Adicionar
+url=URL
+description=Descrição
+list.cat=Lista de Categorias
+create=Criar
+edit=Editar
+remove=Remover
+select=Selecione
+avatar.url=URL do Avatar
+web=Web-Site
+send=Enviar
+featured=Destaque
+clients=Clientes
+tips=Dicas
+tel=Telefone
+menu=Menu
+users=Usuários
+
+
+
+#Category | Product
+category=Categoria
+categories=Categorias
+product=Produto
+products=Produtos
+fail.remove.category=Não foi possivel excluir a categoria
+fail.remove.product=Não foi possivel excluir o Produto
+fail.add=Erro ao cadastrar
+fail.update=Erro no Update
+fail.find=Não encontrado
+success.remove=Exclusão OK
+success.update=Update OK
+success.add=Cadastro OK
+create.category=Criar Categoria
+url.small=URL da imagem menor
+url.large=URL da imagem maior
+our.products=Nossos produtos!
+our.products.detail=Confira todos os nossos produtos e delicie-se!
+prod.not_found=Produto não encontrado
+prod.fail.prod=Erro ao tentar encontrar o produto
+prod.form.error=Dados do fonmulario incompletos
+prod.add.fail=Não foi possivel adicionar o novo produto
+prod.up.fail=Não foi possivel atualizar o produto
+
+#Gallery
+gallery=Galeria
+add.iten=Adicionar item a galeria
+gal.find.nok=Não foram encontrados produtos na galeria
+gal.add.error=Dados para cadastrarna galeria insuficiente
+gal.add.fail=Não foi possivel cadastrar a galeria
+gal.find.error=Não foi possivel encontrar a galeria
+gal.del.error=Não foi possivel apagar a galleria
+
+#Infos
+info.about=Somos um grupo familiar, que trabalha para atender a necessidades de nossos amigos. Estamos sempre tentando criar mais e melhor, se você tiver a necessidade de algo de nossos produtos diferenciado, por-favor, entre em contato, estaremos sempre dispostos a ajuda-lo a ter o que você imagina poder ter!
+info.mission=A nossa missão está em oferecer um produto com alta qualidade, baseado na criatividade dos nossos familiares. Nosso material é de otima qualidade e todos os doces feitos artesanalmente. Por sermos fabricantes, entendemos que o nosso sucesso está alicerçado na satisfação dos nossos clientes, e assim podemos elaborar e personalizar o seu produto.
+info.ingredient=Os ingredientes utilizados na fabricação de nossos produtos são escolhidos a dedo para proporcionar a melhor qualidade possivel a nossos clientes. Nossos carros chefes são Bolos, Tortas e Cupcakes, experimente e tente resistir!
+info.clients=Nossos clientes e Amigos são nossa inspiração, essa é a fórmula de sucesso e qualidade de nossos produtos. Com a sua imaginação e nossa criatividade, juntos, podemos realizar e criar coisas incriveis!
+info.tips=Veja nossas dicas de culinária.
+info.modal=Nossa seção de dicas de culinária está sendo desenvolvida, em breve você terá em mãos diversas informações que lhe ajudaram em sua cozinha. Fique atento, em alguns dias estaremos estaremos entrando em contato com os inscritos de nossa
+info.tips.culinary=Dicas de Culinária
+
+#Contact
+contact=Contato
+contacts=Contatos
+contact.required=Campos obrigatórios.
+contact.not_found=Contatos não encontrados
+email.send=E-mail enviado com sucesso
+email.send.fail=Erro ao enviar o e-mail, por favor tente novamente!
+email.subject=Email de contato
+email.news.created=Email salvo com sucesso.
+email.news.error=Ocorreu ao tentar salvar email.
+
+#ERROR
+request.error=error value from request
+user.not.found=No user found
+user.not.save=Error trying to save user
+cat.not.save=Error trying to save category
+cat.not.found=No category found

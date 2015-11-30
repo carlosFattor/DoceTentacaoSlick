@@ -1,0 +1,25 @@
+@()(implicit messages: Messages)
+
+<style>
+#map-container {
+height : 500px;
+}
+</style>
+
+
+<div class="row" style="margin-bottom : 100px;">
+    <div class="col-md-4">
+        <h1>@messages("about")</h1>
+
+        <h3>@messages("group")</h3>
+        <br>
+        <p>@messages("info.about")</p>
+        <br>
+        <cite>@messages("cite")</cite>
+
+    </div>
+    <div id="map"></div>
+    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+        <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+    </div>
+</div>

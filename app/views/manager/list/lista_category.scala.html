@@ -1,0 +1,98 @@
+@()(implicit request: RequestHeader, messages: Messages)
+
+<link href='//fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="jumbotron panel panel-default">
+    <div class="row">
+
+        <info-user info="infoUser">
+            <span class="pull-left">
+                <button type="button" class="btn btn-primary btn-lg" ng-click="openAside('left', true)">
+                    <span class="glyphicon glyphicon-align-justify"></span> @messages("menu")
+                </button>
+            </span>
+        </info-user>
+    </div>
+</div>
+<div class="jumbotron panel panel-default">
+
+    <h3 class="title text-center">Lista de categorias.</h3>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <th></th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th></th>
+            <th></th>
+            <tr ng-repeat="cat in categories">
+                <td><img ng-src="{{cat.url}}" class="img-circle" style="width: 50px;"/></td>
+                <td>{{cat.name}}</td>
+                <td>{{cat.desc}}</td>
+                <td><button type="button" class="btn btn-default" ng-click="open(cat)">Editar</button></td>
+                <td><button type="button" class="btn btn-danger" ng-click="delete(cat)">Excluir</button></td>
+            </tr>
+        </table>
+    </div>
+    <hr/>
+    <div>
+        <button type="button" class="btn btn-primary" ng-click="create()">Criar item.</button>
+    </div>
+</div>
+
+
+<div>
+    <script type="text/ng-template" id="myModalCategory.html">
+
+    <div class="modal-header">
+        <h3 class="modal-title">Criar | Editar</h3>
+    </div>
+
+        <div class="modal-body">
+            <form class="form-horizontal" name="frmCat">
+                <fieldset>
+
+                <!-- Form Name -->
+                <legend>Categoria</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="name">Nome</label>
+                    <div class="col-md-4">
+                        <input id="name" name="frmCat.name" placeholder="Nome" class="form-control input-md" ng-model="catToOpen.name" ng-required="true" type="text">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="desc">Desc</label>
+                    <div class="col-md-4">
+                        <input id="desc" name="frmCat.desc" placeholder="Descrição" class="form-control input-md" ng-model="catToOpen.desc" ng-required="true" type="text">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="url">Url</label>
+                    <div class="col-md-4">
+                        <input id="url" name="frmCat.url" placeholder="Url" class="form-control input-md" ng-model="catToOpen.url" ng-required="true" type="text">
+
+                    </div>
+                </div>
+
+                <!-- Button (Double) -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="btnCreate"></label>
+                    <div class="col-md-8">
+                        <button id="btnCreate" name="btnCreate" class="btn btn-success" ng-disabled="frmCat.$invalid" ng-click="ok()">Ok</button>
+                        <button id="btnCancel" name="btnCancel" class="btn btn-danger" ng-click="cancel()">Cancel</button>
+                    </div>
+                </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </script>
+</div>

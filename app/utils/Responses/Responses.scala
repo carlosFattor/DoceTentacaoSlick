@@ -1,6 +1,6 @@
 package utils.Responses
 
-import models.User
+import models.{Contact, User}
 import play.api.libs.json._
 
 /**
@@ -27,9 +27,6 @@ object EndpointResponse {
 }
 
 object ErrorResponse {
-  val INVALID_JSON = 1000
-  val NOT_ENOUGH_DATA = 1001
-  val UNAVAILABLE = 1002
 
   def apply(status: Int, message: String) = {
     EndpointResponse("NOK", JsNull, Option(ErrorResult(status, message)))
@@ -41,3 +38,5 @@ object SuccessResponse {
     EndpointResponse("OK", Json.toJson(successResponse), None)
   }
 }
+
+case class ContactUnavailable(cont: Contact) extends Throwable

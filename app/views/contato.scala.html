@@ -1,0 +1,59 @@
+@()(implicit messages: Messages)
+
+<div class="col-xs-12 col-sm-5 col-md-4" style="margin-bottom : 100px;">
+    <div class="alert alert-danger" role="alert" ng-bind="msgFail" ng-show="statusNOk"></div>
+    <div class="alert alert-success" role="alert" ng-bind="msgOk" ng-show="statusOk"></div>
+
+    <h2>@messages("contact")</h2>
+
+    <form name="frmContact">
+        <p class="name">
+            <input type="text" name="name" ng-model="contact.name" placeholder="@messages("name")" ng-required="true"/>*
+        </p>
+        <div ng-show="frmContact.name.$error.required && frmContact.name.$dirty" class="alert alert-danger">
+            <p>Por favor, preencha o seu nome.</p>
+        </div>
+
+        <div ng-show="frmContact.name.$error.minlength" class="alert alert-danger">
+            <p>O campo nome deve conter no mínimo 3 caractéres.</p>
+        </div>
+
+        <p class="email">
+            <input type="email" name="email" ng-model="contact.email" placeholder="@messages("email")" ng-required="true" >*
+        </p>
+        <div ng-show="frmContact.email.$invalid && frmContact.email.$dirty" class="alert alert-danger">
+            <p>Por favor, preencha o seu e-mail corretamente.</p>
+        </div>
+
+        <p class="web">
+            <input type="text" name="site" ng-model="contact.website" placeholder="@messages("web")">
+        </p>
+
+        <p class="tel">
+            <input type="text" name="phone" ng-model="contact.phone" placeholder="@messages("tel")" ui-phone >
+        </p>
+
+        <p class="text">
+            <textarea rows="5" cols="20" name="textEmail" ng-model="contact.textEmail" ng-required="true"></textarea>
+            <br />*
+            <span style="color: red;" ng-show="frmContact.textEmail.$invalid"></span>
+        </p>
+
+        <div class="frmRequired"><h6> * @messages("contact.required")</h6></div>
+
+
+        <p class="submit">
+            <input type="submit" value="@messages("send")" ng-click="sendContact(contact)"/>
+        </p>
+    </form>
+</div>
+<div class="col-xs-6 col-md-5 hidden-xs">
+    <aside>
+
+            <p>Agradecemos pelo interesse em entrar em contato conosco, fique a vontade para reclamações ou sugestões.
+                <br />Use tambêm este formulário para consultar nossos preços.</p>
+            <h3>Deixe sua sugestão!</h3>
+            <footer>Nossa equipe agradece. <cite title="Obrigado!">Obrigado!</cite></footer>
+
+    </aside>
+</div>

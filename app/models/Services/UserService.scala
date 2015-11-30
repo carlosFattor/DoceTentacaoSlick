@@ -2,6 +2,7 @@ package models.Services
 
 import java.util.UUID
 import javax.inject.Inject
+import akka.actor.Status.Success
 import models.DAOs.{ProductDAO, UserDAO}
 import models.User
 import utils.Base64
@@ -11,7 +12,7 @@ import scala.concurrent.Future
 /**
  * Created by carlos on 16/10/15.
  */
-class UserService @Inject()(userDAO: UserDAO){
+class UserService @Inject()(userDAO: UserDAO) {
 
   def findListUser(): Future[Seq[User]] = {
     userDAO.list
@@ -20,8 +21,8 @@ class UserService @Inject()(userDAO: UserDAO){
   def addUser(user: User): Future[Option[User]] = {
     val newUser = user.copy(password = Base64.encodeString(user.password))
     userDAO.insert(newUser).map { uuid =>
-      val newUser = user.copy(id = Option(uuid))
-      Option(newUser)
+      val finishedUser = newUser.copy(id = Option(uuid))
+      Option(finishedUser)
     }
   }
 
@@ -30,7 +31,8 @@ class UserService @Inject()(userDAO: UserDAO){
   }
 
   def updateUSer(user: User): Future[Int] = {
-    userDAO.update(user.id.get, user)
+    val newUser = user.copy(password = Base64.encodeString(user.password))
+    userDAO.update(user.id.get, newUser)
   }
 
   def removeUser(id: UUID): Future[Int] = {
@@ -43,7 +45,11 @@ class UserService @Inject()(userDAO: UserDAO){
 
   def validateUser(email: String, password: String): Future[Option[User]] = {
     userDAO.findByEmail(email).map { user =>
-      user.filter(u => u.email.equalsIgnoreCase(Base64.encodeString(password)))
+      user.filter(u => u.password == (Base64.encodeString(password)))
     }
+  }
+
+  def deleteUser(id: UUID) = {
+    userDAO.delete(id)
   }
 }

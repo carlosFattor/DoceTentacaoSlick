@@ -1,0 +1,100 @@
+@(contact: Contact)
+
+@import helper._
+
+@main_email("") {
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border : 1 px solid #cccccc ;">
+        <tr>
+            <td align="center" bgcolor="#70bbd9" style="padding : 20px 0 30px 0 ;">
+                <img src="https://docetentacaoslick.herokuapp.com/assets/img/icons/52748fade1ced01b3bb8b461cbfa250c-logo_bolos.png" alt="Nilda Doce Tentação - Email de contato" width="250" height="100%" style="display : block;" />
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#ffffff" style="padding : 40 px 30 px 40 px 30 px ;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td style="color : #153643 ; font-family : Arial, sans-serif ; font-size : 24 px ;">
+                            <b>Nilda - Doce Tentação</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding : 20 px 0 30 px 0 ;">
+                            <p>Obrigado por entrar em contato conosco, ele é muito importante para nós, a partir de agora você já estará concorrendo a nossas futuras promoções e descontos especias que só os nossos clientes mais especias possuem.</p>
+                            <p>Obrigado.</p>
+                            <br/>
+                            <p>Abaixo segue os dados de contato</p>
+                            <br/>
+
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <th class="tg-3we0" colspan="2">Dados Do Contato<br></th>
+                                </tr>
+                                <tr>
+                                    <td class="tg-rzqm">Nome</td>
+                                    <td class="tg-3we0">@contact.name</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-rzqm">Email</td>
+                                    <td class="tg-3we0">@contact.email</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-rzqm">Telefone</td>
+                                    <td class="tg-3we0">@contact.phone</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-rzqm">Site</td>
+                                    <td class="tg-3we0">@contact.website</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-rzqm">Mensagem<br></td>
+                                    <td class="tg-3we0">@contact.textEmail</td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-rzqm">Data</td>
+                                    <td class="tg-3we0">@contact.data.getOrElse("")</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#ee4c50" style="padding : 30 px 30 px 30 px 30 px ;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td style="color : #ffffff ; font-family : Arial, sans-serif ; font-size : 14 px ;">
+                            <p>&copy; 2010<script>
+                                new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>
+                                , <a href="http://www.nildadocetentacao.com.br" target="_blank">Nilda Doce Tentação</a>.</p>
+                        </td>
+                        <td align="right">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <a href="https://www.facebook.com/nildadocetentacao">
+                                            <img src="https://docetentacaoslick.herokuapp.com/assets/img/icons/f196b070fca74da6e2b50574e9797339-face.png" alt="Twitter" width="38" height="38" style="display : block ;" border="0" />
+                                        </a>
+                                    </td>
+                                    <td style="font-size : 0 ; line-height : 0 ;" width="10">&nbsp;</td>
+                                    <td>
+                                        <a href="https://twitter.com/Nilda_Doce">
+                                            <img src="https://docetentacaoslick.herokuapp.com/assets/img/icons/4f07cc4b2ecd26786cc3bbce78a6773b-twitter.png" alt="Facebook" width="38" height="38" style="display : block ;" border="0" />
+                                        </a>
+                                    </td>
+                                    <td style="font-size : 0 ; line-height : 0 ;" width="10">&nbsp;</td>
+                                    <td>
+                                        <a href="https://www.instagram.com/nildadocetentacao/">
+                                            <img src="https://docetentacaoslick.herokuapp.com/assets/img/icons/1fd2848574615f8a526be5333ae3d7a8-insta.png" alt="Facebook" width="38" height="38" style="display : block ;" border="0" />
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+}

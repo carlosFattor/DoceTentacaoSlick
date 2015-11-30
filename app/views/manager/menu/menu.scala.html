@@ -1,0 +1,15 @@
+@()(implicit request: RequestHeader, messages: Messages)
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="jumbotron panel panel-default">
+    <div class="row">
+
+        <info-user info="infoUser">
+            <span class="pull-left" ng-if="user">
+                <button type="button" class="btn btn-primary btn-lg" ng-click="openAside('left', true)">
+                    <span class="glyphicon glyphicon-align-justify"></span> @messages("menu")
+                </button>
+            </span>
+        </info-user>
+    </div>
+</div>

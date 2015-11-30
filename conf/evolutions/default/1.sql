@@ -47,7 +47,7 @@ CREATE TABLE "product" (
     "desc" VARCHAR,
     img_small_url VARCHAR,
     img_large_url VARCHAR,
-    comments timestamp with time zone,
+    comments VARCHAR,
     feature boolean,
     FOREIGN KEY (category_id) REFERENCES category(id)
 );

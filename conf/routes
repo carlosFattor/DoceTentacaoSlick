@@ -2,13 +2,63 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-POST        /admin/user/new/         controllers.UserControl.add
-POST        /admin/user/             controllers.UserControl.login
-GET         /admin/user/list/        controllers.UserControl.users
-GET         /                        controllers.Application.index
-GET         /list/                   controllers.Application.list
+# Dynamic part of the url
+GET           /views/$template<.+>.html              controllers.Application.view(template)
+GET           /admin/views/$template<.+>.html        controllers.Application.viewManager(template)
 
+# Home page
+GET           /                                      controllers.Application.index
+
+# Home page manager
+GET           /admin/                                controllers.Application.indexManager
+
+#Manager User
+POST          /admin/users/login/                    controllers.UserControl.login
+POST          /admin/users/logout/                   controllers.UserControl.logout
+POST          /admin/users/new/                      controllers.UserControl.add
+DELETE        /admin/users/delete/                   controllers.UserControl.delete
+PUT           /admin/users/update/                   controllers.UserControl.update
+GET           /admin/users/                          controllers.UserControl.users
+GET           /admin/users/edit/:id/                 controllers.UserControl.edit(id: java.util.UUID)
+
+#Public Category
+GET           /category/list/                        controllers.CategoryControl.list
+
+#Manager Category
+POST          /admin/category/new/                   controllers.CategoryControl.add
+PUT           /admin/category/update/                controllers.CategoryControl.update
+GET           /admin/category/list/                  controllers.CategoryControl.list
+GET           /admin/category/edit/:id/              controllers.CategoryControl.edit(id: java.util.UUID)
+DELETE        /admin/category/delete/                controllers.CategoryControl.delete
+
+#Public Product
+GET           /product/list/                         controllers.ProductControl.list
+GET           /product/list_featured/                controllers.ProductControl.listFeatured
+GET           /product/list_products/:id/            controllers.ProductControl.getList(id: java.util.UUID)
+GET           /product/get/:id/                      controllers.ProductControl.get(id: java.util.UUID)
+GET           /product/get_list/:name/               controllers.ProductControl.getListByName(name: String)
+
+#Manager Product
+POST          /admin/product/new/                    controllers.ProductControl.add
+PUT           /admin/product/update/                 controllers.ProductControl.update
+GET           /admin/product/list/                   controllers.ProductControl.list
+GET           /admin/product/edit/:id/               controllers.ProductControl.edit(id: java.util.UUID)
+DELETE        /admin/product/delete/                 controllers.ProductControl.delete
+
+#Public Gallery
+GET           /gallery/list/                         controllers.GalleryControl.list
+
+#Manager Gallery
+POST          /admin/gallery/new/                    controllers.GalleryControl.add
+PUT           /admin/gallery/update/                 controllers.GalleryControl.update
+GET           /admin/gallery/list/                   controllers.GalleryControl.list
+GET           /admin/gallery/edit/:id/               controllers.GalleryControl.edit(id: java.util.UUID)
+DELETE        /admin/gallery/delete/                 controllers.GalleryControl.delete
+
+#Public Contact
+POST          /contact/send/                         controllers.ContactControl.sendContact
+POST          /contact/news/                         controllers.ContactControl.news
+GET           /admin/contacts/                       controllers.ContactControl.contacts
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file            controllers.Assets.versioned(path="/public", file: Asset)
+GET           /assets/*file                          controllers.Assets.versioned(path="/public", file: Asset)
