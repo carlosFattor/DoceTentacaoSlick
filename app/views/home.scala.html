@@ -28,8 +28,8 @@
     <div class="col-md-3 pull-right">
         <form>
             <fieldset>
-                <input autocomplete="off" placeholder="Buscar" id="search" name="search" type="text" data-toggle="tooltip" data-placement="bottom" title="Pesquise nossos produto" />
-                <button type="submit" id="myButton" class="btn btn-default" autocomplete="off">
+                <input ng-model="prod" placeholder="Buscar Produtos" id="search" name="search" type="text" data-toggle="tooltip" data-placement="bottom" title="Pesquise nossos produto" />
+                <button type="submit" id="myButton" class="btn btn-default" ng-click="getListProducts(prod)">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 </button>
             </fieldset>

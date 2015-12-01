@@ -28,8 +28,8 @@ angular.module("ndt-app").controller("ndtController", function ($scope, listAPI)
         }
     }
 
-    var getListProducts = function(name) {
-        listAPI.findListProds("prod1")
+    $scope.getListProducts = function(name) {
+        listAPI.findListProds(name)
             .success(function(data, status){
                 console.log(data)
             })

@@ -57,7 +57,7 @@ class ProductControl @Inject()(prodService: ProductService, val messagesApi: Mes
 
   def add = Authenticated.async(parse.json) { implicit request =>
     val incomingProd = Product.formProduct.bindFromRequest()
-
+    println(incomingProd)
     incomingProd.fold({ error =>
       val response = ErrorResponse(BAD_REQUEST, messagesApi("prod.form.error"))
       Future.successful(BadRequest(Json.toJson(response)))

@@ -21,11 +21,16 @@
     <hr />
     <div class="table-responsive">
         <table class="table table-striped">
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Data</th>
+            <th>Resp</th>
             <tr ng-repeat="cont in contacts">
                 <td>{{cont.name}}</td>
                 <td>{{cont.email}}</td>
                 <td>{{cont.phone}}</td>
-                <td>{{cont.data}}</td>
+                <td>{{cont.data | date:'dd/MM/yy'}}</td>
                 <td>{{cont.sent}}</td>
                 <td><button type="button" class="btn btn-default" ng-click="open(cont)">Detalhar</button></td>
             </tr>
@@ -82,7 +87,7 @@
     <div class="form-group">
     <label class="col-md-4 control-label" for="data">Data</label>
     <div class="col-md-4">
-    <input id="data" name="data" ng-model="contToOpen.data" placeholder="" class="form-control input-md" type="text">
+    <input id="data" name="data" ng-model="contToOpen.data | date:'dd/MM/yy'" placeholder="" class="form-control input-md" type="text">
 
     </div>
     </div>

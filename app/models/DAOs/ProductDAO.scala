@@ -45,7 +45,7 @@ class ProductDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvide
 
   def findListByName(name: String): Future[Seq[Product]] = {
     val queryByName = for {
-      prod <- table if fulltextMatch(prod.name, name)
+      prod <- table if prod.name.toLowerCase like s"%$name%"
     } yield prod
     Logger.info(s"Query findByEmail: ${queryByName.result.statements}")
 
